@@ -6,9 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
@@ -75,6 +73,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
             val viewModel: ExampleViewModel = viewModel {
                 ExampleViewModel(config = Config(createSavedStateHandle()))
             }
@@ -85,16 +84,12 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     Column(modifier = Modifier.fillMaxSize()) {
-                        Spacer(modifier = Modifier.height(40.dp))
                         Greeting(
                             modifier = Modifier
-                                .clickable {
-                                    viewModel.updateState()
-                                }
+                                .clickable { viewModel.updateState() }
                                 .align(Alignment.CenterHorizontally),
                             text = viewModel.state.counter.toString()
                         )
-                        Spacer(modifier = Modifier.height(40.dp))
                     }
                 }
             }
