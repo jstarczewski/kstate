@@ -3,7 +3,7 @@ import common
 
 struct ExampleView: View {
     
-    @ObservedViewModel var viewModel = ExampleViewModel(config: MvvmConfig())
+    @ObservedStateHolder var viewModel =  ExampleViewModel(config: MvvmConfig())
     
 	var body: some View {
         Text("Counter = \(viewModel.state.counter)")
@@ -18,3 +18,4 @@ struct ContentView_Previews: PreviewProvider {
 		ExampleView()
 	}
 }
+

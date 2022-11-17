@@ -9,7 +9,6 @@
 import Foundation
 import common
 
-@dynamicMemberLookup
 class ObservableViewModel<ViewModel>: ObservableObject where ViewModel: MvvmViewModel {
 
     var viewModel: ViewModel
@@ -21,11 +20,6 @@ class ObservableViewModel<ViewModel>: ObservableObject where ViewModel: MvvmView
                 self?.objectWillChange.send()
             }
         }
-    }
-
-    subscript<T>(dynamicMember keyPath: WritableKeyPath<ViewModel, T>) -> T {
-        get { viewModel[keyPath: keyPath] }
-        set { viewModel[keyPath: keyPath] = newValue }
     }
 
     deinit {

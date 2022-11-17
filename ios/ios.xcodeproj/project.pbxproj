@@ -12,6 +12,9 @@
 		0C5D1CE42922DF6500E934F8 /* ObservableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D1CE32922DF6500E934F8 /* ObservableViewModel.swift */; };
 		0C5D1CE62922DF6F00E934F8 /* StateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D1CE52922DF6F00E934F8 /* StateViewModel.swift */; };
 		0C5D1CE82922DF7C00E934F8 /* ObservedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D1CE72922DF7C00E934F8 /* ObservedViewModel.swift */; };
+		0CE12FAF29265EF60055CB44 /* ObservableStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE12FAE29265EF60055CB44 /* ObservableStateHolder.swift */; };
+		0CE12FB1292661A10055CB44 /* ObservedStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE12FB0292661A10055CB44 /* ObservedStateHolder.swift */; };
+		0CE12FB3292661AC0055CB44 /* StateStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE12FB2292661AC0055CB44 /* StateStateHolder.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ExampleView.swift */; };
 /* End PBXBuildFile section */
@@ -35,6 +38,9 @@
 		0C5D1CE32922DF6500E934F8 /* ObservableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableViewModel.swift; sourceTree = "<group>"; };
 		0C5D1CE52922DF6F00E934F8 /* StateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateViewModel.swift; sourceTree = "<group>"; };
 		0C5D1CE72922DF7C00E934F8 /* ObservedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedViewModel.swift; sourceTree = "<group>"; };
+		0CE12FAE29265EF60055CB44 /* ObservableStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableStateHolder.swift; sourceTree = "<group>"; };
+		0CE12FB0292661A10055CB44 /* ObservedStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedStateHolder.swift; sourceTree = "<group>"; };
+		0CE12FB2292661AC0055CB44 /* StateStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateStateHolder.swift; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
@@ -60,6 +66,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		0CE12FAC29265EC50055CB44 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0C5D1CE32922DF6500E934F8 /* ObservableViewModel.swift */,
+				0C5D1CE52922DF6F00E934F8 /* StateViewModel.swift */,
+				0C5D1CE72922DF7C00E934F8 /* ObservedViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0CE12FAD29265ECF0055CB44 /* StateHolder */ = {
+			isa = PBXGroup;
+			children = (
+				0CE12FAE29265EF60055CB44 /* ObservableStateHolder.swift */,
+				0CE12FB0292661A10055CB44 /* ObservedStateHolder.swift */,
+				0CE12FB2292661AC0055CB44 /* StateStateHolder.swift */,
+			);
+			path = StateHolder;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
@@ -80,14 +106,13 @@
 		7555FF7D242A565900829871 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				0CE12FAD29265ECF0055CB44 /* StateHolder */,
+				0CE12FAC29265EC50055CB44 /* ViewModel */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ExampleView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
-				0C5D1CE32922DF6500E934F8 /* ObservableViewModel.swift */,
-				0C5D1CE52922DF6F00E934F8 /* StateViewModel.swift */,
-				0C5D1CE72922DF7C00E934F8 /* ObservedViewModel.swift */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -192,9 +217,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C5D1CE62922DF6F00E934F8 /* StateViewModel.swift in Sources */,
+				0CE12FB3292661AC0055CB44 /* StateStateHolder.swift in Sources */,
+				0CE12FB1292661A10055CB44 /* ObservedStateHolder.swift in Sources */,
 				0C5D1CE82922DF7C00E934F8 /* ObservedViewModel.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ExampleView.swift in Sources */,
+				0CE12FAF29265EF60055CB44 /* ObservableStateHolder.swift in Sources */,
 				0C5D1CE42922DF6500E934F8 /* ObservableViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

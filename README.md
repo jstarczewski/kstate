@@ -226,3 +226,43 @@ And Android
 actual fun <T : Any> StateHolder.state(initialValue: T): State<T> =
     State(initialValue)
 ```
+
+## Wiring on iOS platform
+
+To make things observable in iOS world we normally make classes implement `ObservableObject` protocol 
+and from something that conforms to `ObservableObject` protocol with 
+special property wrappers like `@Published` updated can be scheduled on write operation to those properties.
+Other way is to manually call `objectWillChange` from `ObservableObject` protocol. That's the approach that was chosen 
+to `StatHolder` implementations reflect changes made to `state` properties.
+
+```swift
+import Foundation
+import common
+
+@dynamicMemberLookup
+class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: common.StateStateHolder {
+
+    var stateHolder: StateHolder
+
+    init(_ stateHolder: StateHolder) {
+        self.stateHolder = stateHolder
+        self.stateHolder.objectWillChange = { [weak self] in
+            DispatchQueue.main.async {
+                self?.objectWillChange.send()
+            }
+        }
+    }
+
+    subscript<T>(dynamicMember keyPath: WritableKeyPath<StateHolder, T>) -> T {
+        get { stateHolder[keyPath: keyPath] }
+        set { stateHolder[keyPath: keyPath] = newValue }
+    }
+}    
+```
+
+Wrapper presented above not only conforms to `ObservableObject` protocol, but also with help of 
+`@dynamicMemmberLookup` "flattens" interface that properties of `StateHolder` implementation are accessible as 
+wrapper properties
+
+With only this wrapper the state management pattern is usable, but the API on 
+
