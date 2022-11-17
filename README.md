@@ -239,25 +239,23 @@ to `StatHolder` implementations reflect changes made to `state` properties.
 import Foundation
 import common
 
-@dynamicMemberLookup
-class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: common.StateStateHolder {
+class ObservableViewModel<ViewModel>: ObservableObject where ViewModel: MvvmViewModel {
 
-    var stateHolder: StateHolder
+    var viewModel: ViewModel
 
-    init(_ stateHolder: StateHolder) {
-        self.stateHolder = stateHolder
-        self.stateHolder.objectWillChange = { [weak self] in
+    init(_ viewModel: ViewModel) {
+        self.viewModel = viewModel
+        self.viewModel.objectWillChange = { [weak self] in
             DispatchQueue.main.async {
                 self?.objectWillChange.send()
             }
         }
     }
 
-    subscript<T>(dynamicMember keyPath: WritableKeyPath<StateHolder, T>) -> T {
-        get { stateHolder[keyPath: keyPath] }
-        set { stateHolder[keyPath: keyPath] = newValue }
+    deinit {
+        viewModel.onClear()
     }
-}    
+}
 ```
 
 Wrapper presented above not only conforms to `ObservableObject` protocol, but also with help of 
