@@ -16,6 +16,7 @@ import androidx.compose.material.Typography
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.jstarczewski.kmm.DomainObject
 import com.jstarczewski.kmm.ExampleViewModel
 import com.jstarczewski.mvvm.Config
 
@@ -78,6 +80,8 @@ class MainActivity : ComponentActivity() {
                 ExampleViewModel(config = Config(createSavedStateHandle()))
             }
 
+            val domainObject = remember { DomainObject() }
+
             MyApplicationTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -86,15 +90,15 @@ class MainActivity : ComponentActivity() {
                     Column(modifier = Modifier.fillMaxSize()) {
                         Greeting(
                             modifier = Modifier
-                                .clickable { viewModel.updateState() }
+                                .clickable { domainObject.updateName() }
                                 .align(Alignment.CenterHorizontally),
-                            text = viewModel.state.counter.toString()
+                            text = domainObject.name
                         )
                         Greeting(
                             modifier = Modifier
                                 .clickable { viewModel.updateState() }
                                 .align(Alignment.CenterHorizontally),
-                            text = viewModel.secondState.counter.toString()
+                            text = viewModel.state.counter.toString()
                         )
                     }
                 }

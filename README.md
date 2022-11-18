@@ -239,28 +239,99 @@ to `StatHolder` implementations reflect changes made to `state` properties.
 import Foundation
 import common
 
-class ObservableViewModel<ViewModel>: ObservableObject where ViewModel: MvvmViewModel {
+class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: common.StateStateHolder {
 
-    var viewModel: ViewModel
+    var stateHolder: StateHolder
 
-    init(_ viewModel: ViewModel) {
-        self.viewModel = viewModel
-        self.viewModel.objectWillChange = { [weak self] in
+    init(_ stateHolder: StateHolder) {
+        self.stateHolder = stateHolder
+        self.stateHolder.objectWillChange = { [weak self] in
             DispatchQueue.main.async {
                 self?.objectWillChange.send()
             }
         }
     }
+}
+```
 
-    deinit {
-        viewModel.onClear()
+The implementation above takes care of dispatching the changes to main thread on iOS side, while also being not blocking the ability to be 
+collected from memory by ARC. 
+
+Now the stake holders reflect the changes, but their API is a bit different than on Android. To "flatten" the API a `@propertyWrapper` is needed. 
+The wrapper is mixed with `StateObject` and `ObservedObjects` to glue everything with SwiftUI's patterns and also expose clean API to use the StateHolder. 
+
+Example `ObservedStateHolder` implementation is presented below
+
+```swift
+import Foundation
+import SwiftUI
+import common
+
+@propertyWrapper
+struct ObservedStateHolder<StateHolder>: DynamicProperty where StateHolder: common.StateStateHolder {
+
+    @ObservedObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
+
+    init(wrappedValue: StateHolder) {
+        self.stateHolderObservable = ObservableStateHolder(wrappedValue)
+    }
+
+    var wrappedValue: StateHolder {
+        get { return stateHolderObservable.stateHolder }
+        set { stateHolderObservable.stateHolder = newValue }
+    }
+
+    var projectedValue: ObservedObject<ObservableStateHolder<StateHolder>>.Wrapper {
+        self.$stateHolderObservable
     }
 }
 ```
 
-Wrapper presented above not only conforms to `ObservableObject` protocol, but also with help of 
-`@dynamicMemmberLookup` "flattens" interface that properties of `StateHolder` implementation are accessible as 
-wrapper properties
+With help of property wrapper the final API of the observable StateHolder that reflects changes on iOS side looks like that: 
 
-With only this wrapper the state management pattern is usable, but the API on 
+```Swift
+import SwiftUI
+import common
 
+struct ExampleView: View {
+    
+    @ObservedStateHolder var domainObject = DomainObject()
+    
+	var body: some View {
+        Text("Name = \(domainObject.name)")
+            .onTapGesture {
+                domainObject.updateName()
+            }
+	}
+}
+
+struct ContentView_Previews: PreviewProvider {
+	static var previews: some View {
+		ExampleView()
+	}
+}
+```
+
+Where `DomainObject` is just a example of something which conforms to `StateHolder` interface with stateful `name` field.
+
+On Android the usage looks as follows
+
+```Kotlin
+            val domainObject = remember { DomainObject() }
+
+            MyApplicationTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        Greeting(
+                            modifier = Modifier
+                                .clickable { domainObject.updateName() }
+                                .align(Alignment.CenterHorizontally),
+                            text = domainObject.name
+                        )
+                    }
+                }
+            }
+```

@@ -3,12 +3,12 @@ import common
 
 struct ExampleView: View {
     
-    @ObservedStateHolder var viewModel =  ExampleViewModel(config: MvvmConfig())
+    @ObservedStateHolder var domainObject = DomainObject()
     
 	var body: some View {
-        Text("Counter = \(viewModel.state.counter)")
+        Text("Name = \(domainObject.name)")
             .onTapGesture {
-                viewModel.updateState()
+                domainObject.updateName()
             }
 	}
 }
