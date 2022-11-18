@@ -3,11 +3,21 @@ package com.jstarczewski.kmm.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Shapes
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.Typography
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -16,6 +26,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.createSavedStateHandle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.jstarczewski.kmm.DomainObject
+import com.jstarczewski.kmm.ExampleViewModel
+import com.jstarczewski.mvvm.Config
 
 @Composable
 fun MyApplicationTheme(
@@ -60,12 +75,32 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
+            val viewModel: ExampleViewModel = viewModel {
+                ExampleViewModel(config = Config(createSavedStateHandle()))
+            }
+
+            val domainObject = remember { DomainObject() }
+
             MyApplicationTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Elo")
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        Greeting(
+                            modifier = Modifier
+                                .clickable { domainObject.updateName() }
+                                .align(Alignment.CenterHorizontally),
+                            text = domainObject.name
+                        )
+                        Greeting(
+                            modifier = Modifier
+                                .clickable { viewModel.updateState() }
+                                .align(Alignment.CenterHorizontally),
+                            text = viewModel.state.counter.toString()
+                        )
+                    }
                 }
             }
         }
@@ -73,14 +108,19 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(text: String) {
-    Text(text = text)
+fun Greeting(
+    modifier: Modifier = Modifier,
+    text: String
+) {
+    Text(
+        modifier = modifier,
+        text = text
+    )
 }
 
 @Preview
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
-        Greeting("Hello, Android!")
     }
 }
