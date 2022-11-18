@@ -90,6 +90,12 @@ class MainActivity : ComponentActivity() {
                                 .align(Alignment.CenterHorizontally),
                             text = viewModel.state.counter.toString()
                         )
+                        Greeting(
+                            modifier = Modifier
+                                .clickable { viewModel.updateState() }
+                                .align(Alignment.CenterHorizontally),
+                            text = viewModel.secondState.counter.toString()
+                        )
                     }
                 }
             }

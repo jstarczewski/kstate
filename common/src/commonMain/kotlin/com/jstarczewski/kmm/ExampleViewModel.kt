@@ -5,7 +5,7 @@ import com.jstarczewski.mvvm.IgnoreOnParcel
 import com.jstarczewski.mvvm.Parcelable
 import com.jstarczewski.mvvm.Parcelize
 import com.jstarczewski.mvvm.ViewModel
-import com.jstarczewski.mvvm.state
+import com.jstarczewski.mvvm.saveableState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -26,8 +26,10 @@ data class ExampleViewModelState(
 
 class ExampleViewModel(config: Config) : ViewModel(config) {
 
-    var state: ExampleViewModelState by state(ExampleViewModelState())
+    var state: ExampleViewModelState by saveableState(ExampleViewModelState())
         private set
+
+    var secondState: ExampleViewModelState by saveableState(ExampleViewModelState())
 
     private val mutex = Mutex()
 
@@ -39,6 +41,7 @@ class ExampleViewModel(config: Config) : ViewModel(config) {
                     launch {
                         mutex.withLock {
                             state = state.copy(counter = state.counter + 1)
+                            secondState = secondState.copy(counter = secondState.counter + 5)
                         }
                     }
                 }

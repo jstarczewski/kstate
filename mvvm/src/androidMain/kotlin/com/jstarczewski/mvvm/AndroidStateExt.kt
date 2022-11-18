@@ -4,13 +4,21 @@ import androidx.lifecycle.SavedStateHandle.Companion.validateValue
 import com.jstarczewski.state.State
 import com.jstarczewski.state.StateHolder
 
-actual fun <T : Any> StateHolder.state(initialValue: T): State<T> {
-    return if (this is CanPersistState && validateValue(initialValue)) {
-        State(savedStateHandle[key()] ?: initialValue) {
-            savedStateHandle[key()] = it
-        }
+actual fun <T : Any> StateHolder.saveableState(initialValue: T): State<T> {
+    require(this is CanPersistState) {
+        "Cannot save state from something which does not conform to `CanPersistState` interface"
+    }
+    return if (validateValue(initialValue)) {
+        SaveableState(
+            initialValue = initialValue,
+            holderKey = key(),
+            getSavedValue = { key -> savedStateHandle[key] },
+            saveValue = { key, value -> savedStateHandle[key] = value }
+        )
     } else {
-        State(initialValue)
+        throw IllegalArgumentException(
+            "Cannot persist state of value which cannot be store in Parcel"
+        )
     }
 }
 
