@@ -7,6 +7,21 @@ Please the into account that this solution works fine for apps using Jetpack Com
 draw the UI on platforms, also we are relaying here on new KMM memory management to
 utilise multiplatform Kotlin coroutines. 
 
+# Roadmap
+1. Cleanup code
+2. Re-think project structure, especially separation of `state` and `mvvm` modules. 
+3. Create a better "Real life example app"
+4. Re-thing distribution, maybe a library*
+5. Cover `SaveableState` example regarding Android in README.md
+
+*The issue I faced here is when after creating Swift Package based on framework generated from `state` module,
+then adding this package (KMM lib distributed via XCFramework wrapped as SwiftPackage) as dependency to another Swift Package with
+helpers (`ObservableStateHolder` etc.), and then adding this package (with helpers) finally to the real project which was using some shared `Common` module and
+using `state` sources in Kotlin, the base `StateHolder` protocol from binary XCFramework from Swift Package "was no the same `StateHolder`" that files from 
+shared `Common` module were implementing ;/. 
+
+For now shared code in Kotlin can be distributed but I do not have any idea how to distribute Swift helpers automatically rather than manually copying them into project.
+
 # Example
 
 Investigate the example below. Some basic requirements that were taken into account regarding the ViewModel approach.
