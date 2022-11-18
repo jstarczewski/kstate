@@ -159,17 +159,15 @@ expect class State<T : Any> {
 
 The implementation on Android goes as follows:
 ```kotlin
-actual class State<T : Any>(
+actual open class State<T : Any>(
     initialValue: T,
-    private val saveValue: (value: T) -> Unit = { }
 ) {
 
-    var value by mutableStateOf(initialValue)
+    protected var value by mutableStateOf(initialValue)
 
-    actual operator fun getValue(thisRef: Any?, property: KProperty<*>): T = value
+    actual open operator fun getValue(thisRef: Any?, property: KProperty<*>): T = value
 
-    actual operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        saveValue(value)
+    actual open operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
         this.value = value
     }
 }
@@ -181,24 +179,16 @@ to the value so some "external saver" (... `SavedStateHandle`) can persist the v
 On `iOS` the implementation goes as follows:
 
 ```kotlin
-actual class State<T : Any>(
-    private var initialValue: T
+actual open class State<T : Any>(
+    private var initialValue: T,
+    private val objectWillChange: () -> Unit
 ) {
 
-    private var objectWillChange: () -> Unit = {}
-
-    constructor(
-        initialValue: T,
-        objectWillChange: () -> Unit
-    ) : this(initialValue) {
-        this.objectWillChange = objectWillChange
-    }
-
-    actual operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+    actual open operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         return initialValue
     }
 
-    actual operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+    actual open operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
         initialValue = value
         objectWillChange()
     }
