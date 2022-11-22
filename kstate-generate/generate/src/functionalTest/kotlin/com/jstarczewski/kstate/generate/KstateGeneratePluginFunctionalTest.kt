@@ -23,16 +23,16 @@ class KstateGeneratePluginFunctionalTest {
         // Setup the test build
         getSettingsFile().writeText("")
         getBuildFile().writeText("""
-plugins {
-    id('com.jstarczewski.kstate.generate.greeting')
-}
-""")
+        plugins {
+            id('com.jstarczewski.kstate.generate')
+        }
+        """)
 
         // Run the build
         val runner = GradleRunner.create()
         runner.forwardOutput()
         runner.withPluginClasspath()
-        runner.withArguments("greeting")
+        runner.withArguments("generateSwiftTemplates")
         runner.withProjectDir(getProjectDir())
         val result = runner.build();
 

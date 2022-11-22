@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
-		0CE12FAF29265EF60055CB44 /* ObservableStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE12FAE29265EF60055CB44 /* ObservableStateHolder.swift */; };
-		0CE12FB1292661A10055CB44 /* ObservedStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE12FB0292661A10055CB44 /* ObservedStateHolder.swift */; };
-		0CE12FB3292661AC0055CB44 /* StateStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE12FB2292661AC0055CB44 /* StateStateHolder.swift */; };
+		0C71E8E3292D60B3006C3FE6 /* ObservableStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C71E8E0292D60B3006C3FE6 /* ObservableStateHolder.swift */; };
+		0C71E8E4292D60B3006C3FE6 /* StateStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C71E8E1292D60B3006C3FE6 /* StateStateHolder.swift */; };
+		0C71E8E5292D60B3006C3FE6 /* ObservedStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C71E8E2292D60B3006C3FE6 /* ObservedStateHolder.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ExampleView.swift */; };
 /* End PBXBuildFile section */
@@ -32,9 +32,9 @@
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		0CE12FAE29265EF60055CB44 /* ObservableStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableStateHolder.swift; sourceTree = "<group>"; };
-		0CE12FB0292661A10055CB44 /* ObservedStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedStateHolder.swift; sourceTree = "<group>"; };
-		0CE12FB2292661AC0055CB44 /* StateStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateStateHolder.swift; sourceTree = "<group>"; };
+		0C71E8E0292D60B3006C3FE6 /* ObservableStateHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableStateHolder.swift; sourceTree = "<group>"; };
+		0C71E8E1292D60B3006C3FE6 /* StateStateHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateStateHolder.swift; sourceTree = "<group>"; };
+		0C71E8E2292D60B3006C3FE6 /* ObservedStateHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservedStateHolder.swift; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
@@ -60,12 +60,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		0CE12FAD29265ECF0055CB44 /* StateHolder */ = {
+		0C71E8DF292D60B3006C3FE6 /* StateHolder */ = {
 			isa = PBXGroup;
 			children = (
-				0CE12FAE29265EF60055CB44 /* ObservableStateHolder.swift */,
-				0CE12FB0292661A10055CB44 /* ObservedStateHolder.swift */,
-				0CE12FB2292661AC0055CB44 /* StateStateHolder.swift */,
+				0C71E8E0292D60B3006C3FE6 /* ObservableStateHolder.swift */,
+				0C71E8E1292D60B3006C3FE6 /* StateStateHolder.swift */,
+				0C71E8E2292D60B3006C3FE6 /* ObservedStateHolder.swift */,
 			);
 			path = StateHolder;
 			sourceTree = "<group>";
@@ -90,7 +90,7 @@
 		7555FF7D242A565900829871 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				0CE12FAD29265ECF0055CB44 /* StateHolder */,
+				0C71E8DF292D60B3006C3FE6 /* StateHolder */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ExampleView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
@@ -199,11 +199,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CE12FB3292661AC0055CB44 /* StateStateHolder.swift in Sources */,
-				0CE12FB1292661A10055CB44 /* ObservedStateHolder.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				0C71E8E5292D60B3006C3FE6 /* ObservedStateHolder.swift in Sources */,
+				0C71E8E4292D60B3006C3FE6 /* StateStateHolder.swift in Sources */,
+				0C71E8E3292D60B3006C3FE6 /* ObservableStateHolder.swift in Sources */,
 				7555FF83242A565900829871 /* ExampleView.swift in Sources */,
-				0CE12FAF29265EF60055CB44 /* ObservableStateHolder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

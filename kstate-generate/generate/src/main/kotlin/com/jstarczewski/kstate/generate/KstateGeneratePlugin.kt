@@ -3,14 +3,10 @@
  */
 package com.jstarczewski.kstate.generate
 
-import com.jstarczewski.kstate.generate.template.ObservableStateHolder
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import java.io.File
 
-/**
- * A simple 'hello world' plugin.
- */
 class KstateGeneratePlugin : Plugin<Project> {
     override fun apply(project: Project) {
 
@@ -26,21 +22,6 @@ class KstateGeneratePlugin : Plugin<Project> {
             project.tasks.register("generateSwiftTemplates", GenerateSwiftTemplatesTask::class.java) {
                 it.outputDir.set(File(spec.outputDir.get()))
                 it.sharedModuleName.set(spec.sharedModuleName.get())
-            }
-        }
-
-        project.tasks.register("elo") {
-            it.dependsOn("generateSwiftTemplates")
-            it.doLast {
-                project.layout.projectDirectory.asFileTree.forEach {
-                    println(it.name)
-                }
-                println("--------")
-                val lines = project.file(ObservableStateHolder.fileName).absoluteFile.readLines()
-                lines.forEach {
-                    println(it)
-                }
-                println("Done generating")
             }
         }
     }

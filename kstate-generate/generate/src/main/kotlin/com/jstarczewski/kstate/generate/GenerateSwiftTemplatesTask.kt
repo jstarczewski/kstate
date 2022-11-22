@@ -1,10 +1,6 @@
 package com.jstarczewski.kstate.generate
 
-import com.jstarczewski.kstate.generate.template.ObservableStateHolder
-import com.jstarczewski.kstate.generate.template.ObservedStateHolder
-import com.jstarczewski.kstate.generate.template.StateStateHolder
-import kstate.gradle.template.FileToGenerate
-import kstate.gradle.template.generateContent
+import com.jstarczewski.kstate.generate.template.*
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property

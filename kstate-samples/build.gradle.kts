@@ -4,8 +4,17 @@ plugins {
     id("com.android.library").version("7.3.0").apply(false)
     kotlin("android").version("1.7.10").apply(false)
     kotlin("multiplatform").version("1.7.10").apply(false)
+    id("com.jstarczewski.kstate.generate").version("0.1.1")
 }
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
+}
+
+generationConfig {
+
+    create("ios") {
+        outputDir.set("ios/ios/StateHolder")
+        sharedModuleName.set("common")
+    }
 }

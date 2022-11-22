@@ -64,3 +64,12 @@ tasks.named<Task>("check") {
     // Include functionalTest as part of the check lifecycle
     dependsOn(testing.suites.named("functionalTest"))
 }
+
+group = "com.jstarczewski.kstate"
+version = "0.1.1"
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+}

@@ -3,13 +3,8 @@ import common
 
 struct ExampleView: View {
     
-    @ObservedStateHolder var domainObject = DomainObject()
-    
 	var body: some View {
-        Text("Name = \(domainObject.name)")
-            .onTapGesture {
-                domainObject.updateName()
-            }
+        Text("Name =")
 	}
 }
 
