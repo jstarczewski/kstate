@@ -1,18 +1,31 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("maven-publish")
+}
+
+group = "com.jstarczewski"
+version = "0.0.1"
+
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
 }
 
 kotlin {
-    android()
-    
+    android {
+        publishLibraryVariants("release", "debug")
+    }
+
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "common"
+            baseName = "kstate"
         }
     }
 
@@ -58,3 +71,4 @@ android {
         targetSdk = 32
     }
 }
+

@@ -33,8 +33,6 @@ android {
 
 dependencies {
     implementation(project(":common"))
-    implementation(project(":mvvm"))
-    implementation(project(":state"))
     implementation("androidx.compose.ui:ui:1.3.1")
     implementation("androidx.compose.ui:ui-tooling:1.3.1")
     implementation("androidx.compose.ui:ui-tooling-preview:1.3.1")

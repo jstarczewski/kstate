@@ -28,9 +28,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.jstarczewski.kmm.Config
 import com.jstarczewski.kmm.DomainObject
 import com.jstarczewski.kmm.ExampleViewModel
-import com.jstarczewski.mvvm.Config
 
 @Composable
 fun MyApplicationTheme(

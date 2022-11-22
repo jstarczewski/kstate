@@ -1,7 +1,7 @@
 package com.jstarczewski.kmm
 
-import com.jstarczewski.state.BaseStateHolder
-import com.jstarczewski.state.state
+import com.jstarczewski.kstate.BaseStateHolder
+import com.jstarczewski.kstate.state
 
 class DomainObject : BaseStateHolder() {
 

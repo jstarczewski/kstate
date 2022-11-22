@@ -22,9 +22,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":state"))
-                implementation(project(":mvvm"))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+                api("com.jstarczewski:common:0.0.1")
             }
         }
         val androidMain by getting {
