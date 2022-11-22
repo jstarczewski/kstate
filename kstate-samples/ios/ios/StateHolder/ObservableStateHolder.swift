@@ -9,7 +9,7 @@
 import Foundation
 import common
 
-class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: common.CommonStateHolder {
+class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: common.KstateStateHolder {
 
     var stateHolder: StateHolder
 

@@ -15,7 +15,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KmmState"
+rootProject.name = "kstate-samples"
 include(":android")
 include(":common")
 include(":state")

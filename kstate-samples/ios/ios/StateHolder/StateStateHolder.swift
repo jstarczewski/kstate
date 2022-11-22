@@ -11,7 +11,7 @@ import SwiftUI
 import common
 
 @propertyWrapper
-struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: common.CommonStateHolder {
+struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: common.KstateStateHolder {
 
     @StateObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
 
