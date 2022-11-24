@@ -3,7 +3,7 @@ package com.jstarczewski.kmm
 import com.jstarczewski.kstate.StateHolder
 import kotlinx.coroutines.CoroutineScope
 
-expect abstract class ViewModel constructor(config: Config) : StateHolder {
+expect abstract class KmmViewModel constructor() : StateHolder {
 
     val viewModelScope: CoroutineScope
 
