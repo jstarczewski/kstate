@@ -1,6 +1,11 @@
 # Work in Progress
 
-Project is under development.
+Project is under development. To run and play with the project locally, clone the repository and then publish projects 
+`kstate-generate` and `kstate` to Maven local repository with help of Gradle.
+```
+./gradlew publishToMavenLocal   
+```
+After publication, sync `kstate-samples` project and you should be able to run it and enjoy this mess :).
 
 ## Overview!
 
@@ -95,5 +100,4 @@ the vision is that after linking generated sources iOS app should build without 
 ![img.png](img.png)
 
 ![img_1.png](img_1.png)
-
 
