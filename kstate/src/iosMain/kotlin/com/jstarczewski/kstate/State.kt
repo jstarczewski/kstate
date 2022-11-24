@@ -16,3 +16,6 @@ actual open class State<T : Any>(
         objectWillChange()
     }
 }
+
+actual fun <T : Any> StateHolder.state(initialValue: T): State<T> =
+    State(initialValue) { stateFactory.objectWillChange() }

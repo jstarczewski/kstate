@@ -1,3 +1,11 @@
 package com.jstarczewski.kstate
 
-expect interface StateHolder
+interface StateHolder {
+
+    val stateFactory: StateFactory
+}
+
+fun StateHolder(): StateHolder = object : StateHolder {
+
+    override val stateFactory: StateFactory = StateFactory()
+}

@@ -4,5 +4,5 @@ import androidx.lifecycle.SavedStateHandle
 
 interface CanPersistState {
 
-    val savedStateHandle: SavedStateHandle
+    var savedStateHandle: SavedStateHandle
 }

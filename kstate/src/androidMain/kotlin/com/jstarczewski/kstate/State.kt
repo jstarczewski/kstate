@@ -17,3 +17,6 @@ actual open class State<T : Any>(
         this.value = value
     }
 }
+
+actual fun <T : Any> StateHolder.state(initialValue: T): State<T> =
+    State(initialValue)

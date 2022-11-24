@@ -8,3 +8,7 @@ expect open class State<T : Any> {
 
     open operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T)
 }
+
+expect fun <T : Any> StateHolder.state(
+    initialValue: T
+): State<T>
