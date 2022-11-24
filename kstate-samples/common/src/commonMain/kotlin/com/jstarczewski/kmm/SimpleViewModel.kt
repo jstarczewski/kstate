@@ -1,12 +1,13 @@
 package com.jstarczewski.kmm
 
+import com.jstarczewski.kstate.StateHolder
 import com.jstarczewski.kstate.state
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SimpleViewModel : KmmViewModel() {
+class SimpleViewModel : KmmViewModel(), StateHolder by StateHolder() {
 
-    var message by state("Hello World")
+    var message by saveableState("Hello World")
         private set
 
     var isLoading by state(false)

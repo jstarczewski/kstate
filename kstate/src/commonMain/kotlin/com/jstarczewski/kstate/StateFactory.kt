@@ -1,3 +1,3 @@
 package com.jstarczewski.kstate
 
-actual interface StateHolder
+expect open class StateFactory()
