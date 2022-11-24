@@ -1,17 +1,19 @@
 # Work in Progress
+
 Project is under development.
 
 # Overview!
-Provide observable state to your Jetpack Compose and SwiftUI modules from Kotlin Multiplatfrom Shared module with near zero boilerplate.
+
+Provide observable state to your Jetpack Compose and SwiftUI modules from Kotlin Multiplatfrom
+Shared module with near zero boilerplate.
 
 ## Declare your state in Shared
-Use simple `state` property delegate which will wrap the provided value properly to allow observation on platforms.
-```Kotlin
-import com.jstarczewski.kstate.state
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
-class SimpleViewModel : KmmViewModel() {
+First make your class a `StateHolder` by interface delegation and then use a simple `state` property
+delegate which will wrap the provided value properly to allow observation on platforms.
+
+```Kotlin
+class SimpleViewModel : KmmViewModel(), StateHolder by StateHolder() {
 
     var message by state("Hello World")
         private set
@@ -27,8 +29,11 @@ class SimpleViewModel : KmmViewModel() {
     }
 }
 ```
+
 ## Observe state on platforms
+
 Create `SimpleViewModel` in any way an receive state updates.
+
 ```kotlin
 @Composable
 fun SimpleScreen() {
@@ -45,7 +50,9 @@ fun SimpleScreen() {
     }
 }
 ```
+
 Use a proper property wrapper provided by library to wire state observation on iOS.
+
 ```Swift
 struct SimpleView: View {
     

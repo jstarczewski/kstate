@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 
 class SimpleViewModel : KmmViewModel(), StateHolder by StateHolder() {
 
-    var message by saveableState("Hello World")
+    var message by state("Hello World")
         private set
 
     var isLoading by state(false)

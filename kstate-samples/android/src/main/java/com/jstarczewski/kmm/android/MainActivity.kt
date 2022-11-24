@@ -90,9 +90,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun SimpleScreen() {
 
-    val viewModel: SimpleViewModel = viewModel {
-        SimpleViewModel().apply { savedStateHandle = createSavedStateHandle() }
-    }
+    val viewModel: SimpleViewModel = viewModel { SimpleViewModel() }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Greeting(
