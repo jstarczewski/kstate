@@ -18,4 +18,4 @@ actual open class State<T : Any>(
 }
 
 actual fun <T : Any> StateHolder.state(initialValue: T): State<T> =
-    State(initialValue) { stateFactory.objectWillChange() }
+    State(initialValue) { binder.objectWillChange() }

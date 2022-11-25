@@ -1,3 +1,3 @@
 package com.jstarczewski.kstate
 
-expect open class StateFactory()
+actual open class Binder

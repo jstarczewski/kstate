@@ -2,10 +2,10 @@ package com.jstarczewski.kstate
 
 interface StateHolder {
 
-    val stateFactory: StateFactory
+    val binder: Binder
 }
 
 fun StateHolder(): StateHolder = object : StateHolder {
 
-    override val stateFactory: StateFactory = StateFactory()
+    override val binder: Binder = Binder()
 }
