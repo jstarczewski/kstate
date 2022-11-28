@@ -23,7 +23,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-                api("com.jstarczewski:kstate:0.0.1")
+                api("com.jstarczewski:kstate:0.0.2")
             }
         }
         val androidMain by getting {

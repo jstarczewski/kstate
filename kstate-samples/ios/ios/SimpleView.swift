@@ -3,19 +3,33 @@ import common
 
 struct SimpleView: View {
     
-    @ObservedStateHolder var viewModel = SimpleViewModel()
+    @ObservedStateHolder private var viewModel = SimpleViewModel()
+    @Binding var move: Bool
     
 	var body: some View {
-        Text(viewModel.message)
+        Text("First \(viewModel.message)")
             .onTapGesture {
-                viewModel.updateMessage()
+                move = !move
             }
 	}
 }
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		SimpleView()
+        SimpleView(move: .constant(false))
 	}
 }
 
+struct OtherSimpleView: View {
+    
+    @ObservedStateHolder private var viewModel = SimpleViewModel()
+    @Binding var move: Bool
+    
+    var body: some View {
+        Text("Other \(viewModel.message)")
+            .onTapGesture {
+                move = !move
+            }
+    }
+
+}
