@@ -2,10 +2,12 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("maven-publish")
+    id("io.gitlab.arturbosch.detekt")
+    id("org.jetbrains.dokka")
 }
 
 group = "com.jstarczewski"
-version = "0.0.1"
+version = "0.0.2"
 
 publishing {
     repositories {
@@ -59,6 +61,19 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
+    }
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    autoCorrect = true
+    parallel = true
+    source = files(
+        "$rootDir/src"
+    )
+    dependencies {
+        detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.22.0")
     }
 }
 
