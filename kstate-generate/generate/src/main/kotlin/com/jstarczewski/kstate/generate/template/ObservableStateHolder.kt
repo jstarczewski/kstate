@@ -14,7 +14,7 @@ object ObservableStateHolder : FileToGenerate() {
 
             init(_ stateHolder: StateHolder) {
                 self.stateHolder = stateHolder
-                self.stateHolder.stateFactory.objectWillChange = { [weak self] in
+                self.stateHolder.binder.objectWillChange = { [weak self] in
                     DispatchQueue.main.async {
                         self?.objectWillChange.send()
                     }
