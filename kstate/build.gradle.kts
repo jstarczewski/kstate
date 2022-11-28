@@ -3,6 +3,7 @@ plugins {
     id("com.android.library")
     id("maven-publish")
     id("io.gitlab.arturbosch.detekt")
+    id("org.jetbrains.dokka")
 }
 
 group = "com.jstarczewski"
