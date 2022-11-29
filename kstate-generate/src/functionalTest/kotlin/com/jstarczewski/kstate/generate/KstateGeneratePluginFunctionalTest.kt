@@ -3,17 +3,13 @@
  */
 package com.jstarczewski.kstate.generate
 
-import org.gradle.testkit.runner.GradleRunner
 import org.junit.Rule
 import org.junit.rules.TemporaryFolder
 import kotlin.test.Test
-import kotlin.test.assertTrue
 
-/**
- * A simple functional test for the 'com.jstarczewski.kstate.generate.greeting' plugin.
- */
 class KstateGeneratePluginFunctionalTest {
-    @get:Rule val tempFolder = TemporaryFolder()
+    @get:Rule
+    val tempFolder = TemporaryFolder()
 
     private fun getProjectDir() = tempFolder.root
     private fun getBuildFile() = getProjectDir().resolve("build.gradle")
@@ -29,16 +25,5 @@ class KstateGeneratePluginFunctionalTest {
         }
         """
         )
-
-        // Run the build
-        val runner = GradleRunner.create()
-        runner.forwardOutput()
-        runner.withPluginClasspath()
-        runner.withArguments("generateSwiftTemplates")
-        runner.withProjectDir(getProjectDir())
-        val result = runner.build()
-
-        // Verify the result
-        assertTrue(result.output.contains("Hello from plugin 'com.jstarczewski.kstate.generate.greeting'"))
     }
 }
