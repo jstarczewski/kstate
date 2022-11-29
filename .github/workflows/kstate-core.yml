@@ -11,5 +11,5 @@ jobs:
         with:
           java-version: 11
       - name: Build with Gradle
-        run: ./gradlew kstate-core:build
+        run: ./gradlew kstate-core:detekt kstate-core:build
 
