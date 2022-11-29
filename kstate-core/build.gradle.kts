@@ -5,15 +5,6 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-group = "com.jstarczewski"
-version = "0.0.2"
-
-publishing {
-    repositories {
-        mavenLocal()
-    }
-}
-
 kotlin {
     android {
         publishLibraryVariants("release", "debug")
@@ -72,3 +63,11 @@ android {
     }
 }
 
+group = "com.jstarczewski"
+version = "0.0.2"
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+}
