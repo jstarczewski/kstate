@@ -1,0 +1,17 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.jstarczewski.kstate////PointingToDeclaration/kstate-core/com.jstarczewski.kstate/index.html
+$dokka.location:com.jstarczewski.kstate//StateHolder/#/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-state-holder.html
+$dokka.location:com.jstarczewski.kstate//state/com.jstarczewski.kstate.StateHolder#TypeParam(bounds=[kotlin.Any])/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/state.html
+$dokka.location:com.jstarczewski.kstate/Binder///PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-binder/index.html
+$dokka.location:com.jstarczewski.kstate/Binder/Binder/#/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-binder/-binder.html
+$dokka.location:com.jstarczewski.kstate/Binder/objectWillChange/#/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-binder/object-will-change.html
+$dokka.location:com.jstarczewski.kstate/State///PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-state/index.html
+$dokka.location:com.jstarczewski.kstate/State/State/#TypeParam(bounds=[kotlin.Any])#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-state/-state.html
+$dokka.location:com.jstarczewski.kstate/State/State/#TypeParam(bounds=[kotlin.Any])/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-state/-state.html
+$dokka.location:com.jstarczewski.kstate/State/getValue/#kotlin.Any?#kotlin.reflect.KProperty[*]/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-state/get-value.html
+$dokka.location:com.jstarczewski.kstate/State/setValue/#kotlin.Any?#kotlin.reflect.KProperty[*]#TypeParam(bounds=[kotlin.Any])/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-state/set-value.html
+$dokka.location:com.jstarczewski.kstate/StateHolder///PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-state-holder/index.html
+$dokka.location:com.jstarczewski.kstate/StateHolder/binder/#/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-state-holder/binder.html
+com.jstarczewski.kstate
+
