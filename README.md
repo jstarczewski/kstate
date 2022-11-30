@@ -6,6 +6,10 @@ some fun with the source code.
 Make state values defined in KMM shared module easy to observe within Jetpack Compose and SwiftUI code with near zero 
 boilerplate.
 
+### Documentation
+
+Documentation is available [here](https://jstarczewski.github.io/kstate/index.html).
+
 ### Example
 1. Make your class in KMM shared module a `StateHolder` by implementing `StateHolder` interface via interface delegation
 pattern with `StateHolder()` function.
