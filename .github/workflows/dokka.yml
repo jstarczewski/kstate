@@ -1,9 +1,13 @@
 name: Docs
 on:
-  push:
-    branches: [ main ]
+  pull_request:
+    branches:
+      - main
+    types: [ closed ]
+
 jobs:
-  publish:
+  if_merged:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
