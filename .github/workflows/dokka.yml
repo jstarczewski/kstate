@@ -18,4 +18,6 @@ jobs:
       - name: Publish documentation
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
           FOLDER: kstate-core/build/dokka/html
