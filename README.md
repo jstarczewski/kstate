@@ -7,9 +7,15 @@ Make state values defined in KMM shared module easy to observe within Jetpack Co
 boilerplate.
 
 ```mermaid
-flowchart LR
-    StateHolder --state---> View
-    View --event---> StateHolder
+flowchart RL
+    subgraph KMM Shared Module
+    StateHolder 
+    end
+    subgraph iOS/Androd
+    View
+    end
+    StateHolder -- state --> View
+    View -- event --> StateHolder
 ```
 
 ### Documentation
