@@ -6,6 +6,18 @@ some fun with the source code.
 Make state values defined in KMM shared module easy to observe within Jetpack Compose and SwiftUI code with near zero 
 boilerplate.
 
+```mermaid
+flowchart RL
+    subgraph KMM Shared Module
+    StateHolder 
+    end
+    subgraph iOS/Androd
+    View
+    end
+    StateHolder -- state --> View
+    View -- event --> StateHolder
+```
+
 ### Documentation
 
 Documentation is available [here](https://jstarczewski.github.io/kstate/index.html).
