@@ -28,12 +28,12 @@ kotlin {
         val commonMain by getting
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(libs.kotlin.test)
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation("androidx.compose.runtime:runtime:1.3.1")
+                implementation(libs.compose.runtime)
             }
         }
         val androidTest by getting

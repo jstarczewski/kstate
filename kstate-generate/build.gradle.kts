@@ -14,8 +14,8 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation(platform(libs.kotlin.bom))
+    implementation(libs.kotlin.stdlib)
 }
 
 testing {
@@ -43,7 +43,7 @@ testing {
 
 gradlePlugin {
 
-    val greeting by plugins.creating {
+    val generate by plugins.creating {
         id = "com.jstarczewski.kstate.generate"
         implementationClass = "com.jstarczewski.kstate.generate.KstateGeneratePlugin"
     }
