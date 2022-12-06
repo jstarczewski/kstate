@@ -1,9 +1,13 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    `maven-publish`
-    id("org.jetbrains.dokka")
+    id("kstate.publish")
+    id("kstate.detekt")
+    id("kstate.dokka")
 }
+
+group = "com.jstarczewski"
+version = "0.0.2"
 
 kotlin {
     android {
@@ -63,11 +67,3 @@ android {
     }
 }
 
-group = "com.jstarczewski"
-version = "0.0.2"
-
-publishing {
-    repositories {
-        mavenLocal()
-    }
-}

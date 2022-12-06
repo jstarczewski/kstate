@@ -15,7 +15,7 @@ dependencies {
 tasks.withType<Detekt>().configureEach {
     parallel = true
     buildUponDefaultConfig = true
-    config.from(file(rootProject.projectDir.resolve(".static/detekt-config.yml")))
+    autoCorrect = true
     reports {
         html.required.set(true)
         xml.required.set(false)

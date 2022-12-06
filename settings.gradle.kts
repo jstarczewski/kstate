@@ -13,7 +13,6 @@ pluginManagement {
 plugins {
     id("com.android.library").version("7.2.0").apply(false)
     kotlin("multiplatform").version("1.7.20").apply(false)
-    id("org.jetbrains.dokka").version("1.7.20").apply(false)
 }
 
 dependencyResolutionManagement {
