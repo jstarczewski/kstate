@@ -1,8 +1,13 @@
 plugins {
     `java-gradle-plugin`
     id("org.jetbrains.kotlin.jvm")
-    `maven-publish`
+    id("kstate.publish")
+    id("kstate.detekt")
+    id("kstate.dokka")
 }
+
+group = "com.jstarczewski.kstate"
+version = "0.1.1"
 
 repositories {
     mavenCentral()
@@ -48,13 +53,4 @@ gradlePlugin.testSourceSets(sourceSets["functionalTest"])
 
 tasks.named<Task>("check") {
     dependsOn(testing.suites.named("functionalTest"))
-}
-
-group = "com.jstarczewski.kstate"
-version = "0.1.1"
-
-publishing {
-    repositories {
-        mavenLocal()
-    }
 }

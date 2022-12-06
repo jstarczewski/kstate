@@ -5,7 +5,6 @@ package com.jstarczewski.kstate.generate
 
 import org.gradle.testfixtures.ProjectBuilder
 import kotlin.test.Test
-import kotlin.test.assertNotNull
 
 class KstateGeneratePluginTest {
     @Test
