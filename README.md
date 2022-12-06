@@ -39,7 +39,7 @@ class SimpleViewModel : KmmViewModel(), StateHolder by StateHolder() {
 }
 ```
 ### Android
-State changes in `@Composable` functions are reflected as shared `State` is available as Compose `MutableState`
+State changes in `@Composable` functions are reflected because shared `State` on Android platform is exposed as Compose `MutableState`
 ```kotlin
 @Composable
 fun SimpleScreen() {
