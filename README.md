@@ -4,7 +4,7 @@ some fun with the source code.
 ## Overview
 
 Make state values defined in KMM shared module easy to observe within Jetpack Compose and SwiftUI code with near zero 
-boilerplate.
+boilerplate by implementation of `StateHolder` interface on class providing data to UI.
 
 ```mermaid
 flowchart RL
@@ -101,7 +101,7 @@ generation destination for iOS with
 
 ```
 plugins {
-    id("com.jstarczewski.kstate.generate").version("0.1.1")
+    id("com.jstarczewski.kstate.generate").version("0.0.2")
 }
 
 generationConfig {
