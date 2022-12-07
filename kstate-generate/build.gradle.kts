@@ -1,13 +1,12 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     `java-gradle-plugin`
-    id("org.jetbrains.kotlin.jvm")
-    id("kstate.publish")
-    id("kstate.detekt")
-    id("kstate.dokka")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kstate.product)
 }
 
 group = "com.jstarczewski.kstate"
-version = "0.1.1"
+version = "0.0.2"
 
 repositories {
     mavenCentral()

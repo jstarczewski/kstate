@@ -1,9 +1,8 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
-    id("kstate.publish")
-    id("kstate.detekt")
-    id("kstate.dokka")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kstate.product)
 }
 
 group = "com.jstarczewski"
@@ -60,10 +59,10 @@ kotlin {
 
 android {
     namespace = "com.jstarczewski.kstate"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
     }
 }
 
