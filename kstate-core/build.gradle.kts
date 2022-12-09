@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kstate.product)
+    alias(libs.plugins.vanitech.junit)
+    jacoco
 }
 
 group = "com.jstarczewski"
@@ -32,10 +34,15 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.compose.runtime)
+                implementation(libs.androidx.compose.runtime)
             }
         }
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test.junit)
+                implementation(libs.junit)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
