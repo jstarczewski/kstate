@@ -3,9 +3,14 @@
  */
 package com.jstarczewski.kstate.generate
 
+import org.gradle.testkit.runner.GradleRunner
 import org.junit.Rule
 import org.junit.rules.TemporaryFolder
+import java.io.File
 import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
+
 
 class KstateGeneratePluginFunctionalTest {
     @get:Rule
@@ -16,14 +21,168 @@ class KstateGeneratePluginFunctionalTest {
     private fun getSettingsFile() = getProjectDir().resolve("settings.gradle")
 
     @Test
-    fun `can run task`() {
+    fun `generated ObservableStateHolder with extension swift content is equal to template content`() {
+
+        val expectedObservableStateHolderContent = """
+            import Foundation
+            import common
+
+            class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: common.KstateStateHolder {
+
+                var stateHolder: StateHolder
+
+                init(_ stateHolder: StateHolder) {
+                    self.stateHolder = stateHolder
+                    self.stateHolder.binder.objectWillChange = { [weak self] in
+                        DispatchQueue.main.async {
+                            self?.objectWillChange.send()
+                        }
+                    }
+                }
+            }
+        """.trimIndent()
+
+        val expectedRelativeFilesPath = "ios/ios/StateHolder"
         getSettingsFile().writeText("")
         getBuildFile().writeText(
             """
         plugins {
             id('com.jstarczewski.kstate.generate')
         }
+        
+        generationConfig {
+
+            create("ios") {
+                outputDir.set("$expectedRelativeFilesPath")
+                sharedModuleName.set("common")
+            }
+        }
         """
         )
+        val runner = GradleRunner.create()
+        runner.forwardOutput()
+        runner.withPluginClasspath()
+        runner.withArguments("generateSwiftTemplates")
+        runner.withProjectDir(getProjectDir())
+        runner.build()
+
+        val content = File("${getProjectDir().absolutePath}/$expectedRelativeFilesPath/ObservableStateHolder.swift")
+            .readText()
+        assertEquals(expectedObservableStateHolderContent, content)
+    }
+
+    @Test
+    fun `generated ObservedStateHolder with extension swift content is equal to template content`() {
+
+        val expectedObservedStateHolderContent = """
+            import Foundation
+            import SwiftUI
+            import common
+
+            @propertyWrapper
+            struct ObservedStateHolder<StateHolder>: DynamicProperty where StateHolder: common.KstateStateHolder {
+
+                @ObservedObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
+
+                init(wrappedValue: StateHolder) {
+                    self.stateHolderObservable = ObservableStateHolder(wrappedValue)
+                }
+
+                var wrappedValue: StateHolder {
+                    get { return stateHolderObservable.stateHolder }
+                    set { stateHolderObservable.stateHolder = newValue }
+                }
+
+                var projectedValue: ObservedObject<ObservableStateHolder<StateHolder>>.Wrapper {
+                    self.${'$'}stateHolderObservable
+                }
+            }
+        """.trimIndent()
+
+        val expectedRelativeFilesPath = "ios/ios/StateHolder"
+        getSettingsFile().writeText("")
+        getBuildFile().writeText(
+            """
+        plugins {
+            id('com.jstarczewski.kstate.generate')
+        }
+        
+        generationConfig {
+
+            create("ios") {
+                outputDir.set("$expectedRelativeFilesPath")
+                sharedModuleName.set("common")
+            }
+        }
+        """
+        )
+        val runner = GradleRunner.create()
+        runner.forwardOutput()
+        runner.withPluginClasspath()
+        runner.withArguments("generateSwiftTemplates")
+        runner.withProjectDir(getProjectDir())
+        runner.build()
+
+        val content = File("${getProjectDir().absolutePath}/$expectedRelativeFilesPath/ObservedStateHolder.swift")
+            .readText()
+        assertEquals(expectedObservedStateHolderContent, content)
+    }
+
+    @Test
+    fun `generated StateStateHolder with extension swift content is equal to template content`() {
+
+
+        val expectedStateStateHolderContent = """
+            import Foundation
+            import SwiftUI
+            import common
+
+            @propertyWrapper
+            struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: common.KstateStateHolder {
+
+               @StateObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
+
+               init(wrappedValue: StateHolder) {
+                   _stateHolderObservable = StateObject(wrappedValue: ObservableStateHolder(wrappedValue))
+               }
+
+               var wrappedValue: StateHolder {
+                   get { return stateHolderObservable.stateHolder }
+                   set { stateHolderObservable.stateHolder = newValue }
+               }
+
+               var projectedValue: ObservedObject<ObservableStateHolder<StateHolder>>.Wrapper {
+                   self.${'$'}stateHolderObservable
+               }
+            }
+        """.trimIndent()
+
+        val expectedRelativeFilesPath = "ios/ios/StateHolder"
+        getSettingsFile().writeText("")
+        getBuildFile().writeText(
+            """
+        plugins {
+            id('com.jstarczewski.kstate.generate')
+        }
+        
+        generationConfig {
+
+            create("ios") {
+                outputDir.set("$expectedRelativeFilesPath")
+                sharedModuleName.set("common")
+            }
+        }
+        """
+        )
+        val runner = GradleRunner.create()
+        runner.forwardOutput()
+        runner.withPluginClasspath()
+        runner.withArguments("generateSwiftTemplates")
+        runner.withProjectDir(getProjectDir())
+        runner.build()
+
+        val content = File("${getProjectDir().absolutePath}/$expectedRelativeFilesPath/StateStateHolder.swift")
+            .readText()
+        assertEquals(expectedStateStateHolderContent, content)
     }
 }

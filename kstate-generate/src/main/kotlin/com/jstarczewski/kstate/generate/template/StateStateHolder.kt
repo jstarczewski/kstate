@@ -5,12 +5,12 @@ object StateStateHolder : FileToGenerate() {
     override val fileName: String = "StateStateHolder.swift"
 
     override val fileContent: String = """
-       import Foundation
-       import SwiftUI
-       import &PROJECT_TOKEN
+    import Foundation
+    import SwiftUI
+    import &PROJECT_TOKEN
 
-       @propertyWrapper
-       struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: &PROJECT_TOKEN.KstateStateHolder {
+    @propertyWrapper
+    struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: &PROJECT_TOKEN.KstateStateHolder {
 
        @StateObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
 

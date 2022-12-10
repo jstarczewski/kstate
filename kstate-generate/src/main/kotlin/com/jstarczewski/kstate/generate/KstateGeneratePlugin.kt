@@ -9,6 +9,7 @@ import java.io.File
 
 class KstateGeneratePlugin : Plugin<Project> {
     override fun apply(project: Project) {
+
         val objects = project.objects
 
         val config = objects.domainObjectContainer(GenerationSpecification::class.java) { name ->
