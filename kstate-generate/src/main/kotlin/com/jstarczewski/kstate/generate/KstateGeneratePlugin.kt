@@ -18,11 +18,23 @@ class KstateGeneratePlugin : Plugin<Project> {
 
         project.extensions.add("generationConfig", config)
 
-        config.all { spec ->
-            project.tasks.register("generateSwiftTemplates", GenerateSwiftTemplatesTask::class.java) {
-                it.outputDir.set(File(spec.outputDir.get()))
-                it.sharedModuleName.set(spec.sharedModuleName.get())
+        if (config.isNotEmpty()) {
+            config.all { spec ->
+                project.tasks.register(GENERATE_SWIFT_TEMPLATES_TASK_NAME, GenerateSwiftTemplatesTask::class.java) {
+                    it.outputDir.set(File(spec.outputDir.get()))
+                    it.sharedModuleName.set(spec.sharedModuleName.get())
+                }
+            }
+        } else {
+            project.tasks.register(GENERATE_SWIFT_TEMPLATES_TASK_NAME, GenerateSwiftTemplatesTask::class.java) {
+                it.outputDir.set(File("${project.projectDir}/GeneratedSwiftWrappers/"))
+                it.sharedModuleName.set(project.name)
             }
         }
+    }
+
+    private companion object {
+
+        private const val GENERATE_SWIFT_TEMPLATES_TASK_NAME = "generateSwiftTemplates"
     }
 }

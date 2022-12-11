@@ -12,6 +12,6 @@ class KstateGeneratePluginTest {
     fun `plugin registers task`() {
         val project = ProjectBuilder.builder().build()
         project.plugins.apply("com.jstarczewski.kstate.generate")
-        println(project.tasks.toString())
+        assertNotNull(project.tasks.findByName("generateSwiftTemplates"))
     }
 }
