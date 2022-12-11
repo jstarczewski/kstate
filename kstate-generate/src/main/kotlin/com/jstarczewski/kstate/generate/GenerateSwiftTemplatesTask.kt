@@ -28,6 +28,7 @@ abstract class GenerateSwiftTemplatesTask : DefaultTask() {
 
     @TaskAction
     fun execute() {
+        logger.quiet("Essa")
         filesToGenerate.forEach { fileToGenerate ->
             val targetFile = outputDir.file(fileToGenerate.fileName).get().asFile
             targetFile.writeText(fileToGenerate.generateContent(sharedModuleName.get()))

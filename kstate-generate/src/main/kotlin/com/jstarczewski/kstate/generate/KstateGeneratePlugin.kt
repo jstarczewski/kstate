@@ -17,7 +17,7 @@ class KstateGeneratePlugin : Plugin<Project> {
 
         project.extensions.add("generationConfig", config)
 
-        if (config.isNotEmpty()) {
+        if (project.extensions.getByName("generationConfig") != null) {
             config.all { spec ->
                 project.tasks.register(GENERATE_SWIFT_TEMPLATES_TASK_NAME, GenerateSwiftTemplatesTask::class.java) {
                     it.outputDir.set(File(spec.outputDir.get()))
