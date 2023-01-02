@@ -10,6 +10,7 @@ version = "0.0.2"
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -24,11 +25,10 @@ testing {
         }
 
         val functionalTest by registering(JvmTestSuite::class) {
-            useKotlinTest()
+            useJUnit()
 
             dependencies {
-                // functionalTest test suite depends on the production code in tests
-                implementation(project)
+                implementation(project())
             }
 
             targets {

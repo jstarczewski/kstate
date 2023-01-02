@@ -5,21 +5,21 @@ object ObservableStateHolder : FileToGenerate() {
     override val fileName: String = "ObservableStateHolder.swift"
 
     override val fileContent: String = """
-        import Foundation
-        import &PROJECT_TOKEN
+    import Foundation
+    import &PROJECT_TOKEN
 
-        class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: &PROJECT_TOKEN.KstateStateHolder {
+    class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: &PROJECT_TOKEN.KstateStateHolder {
 
-            var stateHolder: StateHolder
+        var stateHolder: StateHolder
 
-            init(_ stateHolder: StateHolder) {
-                self.stateHolder = stateHolder
-                self.stateHolder.binder.objectWillChange = { [weak self] in
-                    DispatchQueue.main.async {
-                        self?.objectWillChange.send()
-                    }
-                }
-            }
+        init(_ stateHolder: StateHolder) {
+             self.stateHolder = stateHolder
+             self.stateHolder.binder.objectWillChange = { [weak self] in
+                 DispatchQueue.main.async {
+                    self?.objectWillChange.send()
+                 }
+             }
         }
+    }
     """.trimIndent()
 }

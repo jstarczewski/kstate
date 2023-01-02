@@ -4,8 +4,8 @@
 package com.jstarczewski.kstate.generate
 
 import org.junit.Rule
+import org.junit.Test
 import org.junit.rules.TemporaryFolder
-import kotlin.test.Test
 
 class KstateGeneratePluginFunctionalTest {
     @get:Rule
