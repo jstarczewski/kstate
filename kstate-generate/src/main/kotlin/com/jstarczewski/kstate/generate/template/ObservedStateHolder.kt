@@ -27,5 +27,6 @@ object ObservedStateHolder : FileToGenerate() {
             self.${'$'}stateHolderObservable
         }
     }
+    
     """.trimIndent()
 }

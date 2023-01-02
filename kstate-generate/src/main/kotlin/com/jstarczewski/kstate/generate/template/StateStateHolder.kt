@@ -5,27 +5,28 @@ object StateStateHolder : FileToGenerate() {
     override val fileName: String = "StateStateHolder.swift"
 
     override val fileContent: String = """
-       import Foundation
-       import SwiftUI
-       import &PROJECT_TOKEN
+    import Foundation
+    import SwiftUI
+    import &PROJECT_TOKEN
 
-       @propertyWrapper
-       struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: &PROJECT_TOKEN.KstateStateHolder {
+    @propertyWrapper
+    struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: &PROJECT_TOKEN.KstateStateHolder {
 
-       @StateObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
+        @StateObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
 
-       init(wrappedValue: StateHolder) {
-           _stateHolderObservable = StateObject(wrappedValue: ObservableStateHolder(wrappedValue))
-       }
+        init(wrappedValue: StateHolder) {
+            _stateHolderObservable = StateObject(wrappedValue: ObservableStateHolder(wrappedValue))
+        }
 
-       var wrappedValue: StateHolder {
-           get { return stateHolderObservable.stateHolder }
-           set { stateHolderObservable.stateHolder = newValue }
-       }
+        var wrappedValue: StateHolder {
+            get { return stateHolderObservable.stateHolder }
+            set { stateHolderObservable.stateHolder = newValue }
+        }
 
-       var projectedValue: ObservedObject<ObservableStateHolder<StateHolder>>.Wrapper {
-           self.${'$'}stateHolderObservable
-       }
+        var projectedValue: ObservedObject<ObservableStateHolder<StateHolder>>.Wrapper {
+            self.${'$'}stateHolderObservable
+        }
     }
+    
     """.trimIndent()
 }
