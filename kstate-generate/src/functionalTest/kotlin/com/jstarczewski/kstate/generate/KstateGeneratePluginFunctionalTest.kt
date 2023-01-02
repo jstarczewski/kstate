@@ -4,6 +4,7 @@
 package com.jstarczewski.kstate.generate
 
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.fail
 import org.gradle.testkit.runner.GradleRunner
 import org.junit.Rule
 import org.junit.Test
@@ -179,6 +180,118 @@ class KstateGeneratePluginFunctionalTest {
         val content = File("${getProjectDir().absolutePath}/$expectedRelativeFilesPath/StateStateHolder.swift")
             .readText()
         assertEquals(expectedStateStateHolderContent, content)
+    }
+
+    @Test
+    fun `no configuration should result in configuration with default parameters`() {
+
+        val expectedStateStateHolderContent = """
+            import Foundation
+            import SwiftUI
+            import shared
+
+            @propertyWrapper
+            struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: shared.KstateStateHolder {
+
+                @StateObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
+
+                init(wrappedValue: StateHolder) {
+                    _stateHolderObservable = StateObject(wrappedValue: ObservableStateHolder(wrappedValue))
+                }
+
+                var wrappedValue: StateHolder {
+                    get { return stateHolderObservable.stateHolder }
+                    set { stateHolderObservable.stateHolder = newValue }
+                }
+
+                var projectedValue: ObservedObject<ObservableStateHolder<StateHolder>>.Wrapper {
+                    self.${'$'}stateHolderObservable
+                }
+            }
+            
+        """.trimIndent()
+
+        val expectedRelativeFilesPath = "templates"
+        getSettingsFile().writeText("")
+        getBuildFile().writeText(
+            """
+        plugins {
+            id('com.jstarczewski.kstate.generate')
+        }
+        
+        swiftTemplates {
+
+            outputDir = "$expectedRelativeFilesPath"
+            sharedModuleName = "shared"
+        }
+        """
+        )
+        val runner = GradleRunner.create()
+        runner.forwardOutput()
+        runner.withPluginClasspath()
+        runner.withArguments("generateSwiftTemplates")
+        runner.withProjectDir(getProjectDir())
+        runner.build()
+
+        val content = File("${getProjectDir().absolutePath}/$expectedRelativeFilesPath/StateStateHolder.swift")
+            .readText()
+        assertEquals(expectedStateStateHolderContent, content)
+    }
+
+    @Test
+    fun `blank outputDir should result in generation failure`() {
+        getSettingsFile().writeText("")
+        getBuildFile().writeText(
+            """
+        plugins {
+            id('com.jstarczewski.kstate.generate')
+        }
+        
+          swiftTemplates {
+
+            outputDir = "  "
+            sharedModuleName = "common"
+        }
+        """
+        )
+        val runner = GradleRunner.create()
+        runner.forwardOutput()
+        runner.withPluginClasspath()
+        runner.withArguments("generateSwiftTemplates")
+        runner.withProjectDir(getProjectDir())
+        try {
+            runner.build()
+            fail("Configuration should crash on invalid data")
+        } catch (_: Exception) {
+        }
+    }
+
+    @Test
+    fun `empty sharedModuleName should result in generation failure`() {
+        getSettingsFile().writeText("")
+        getBuildFile().writeText(
+            """
+        plugins {
+            id('com.jstarczewski.kstate.generate')
+        }
+        
+          swiftTemplates {
+
+            outputDir = "te"
+            sharedModuleName = ""
+        }
+        """
+        )
+        val runner = GradleRunner.create()
+        runner.forwardOutput()
+        runner.withPluginClasspath()
+        runner.withArguments("generateSwiftTemplates")
+        runner.withProjectDir(getProjectDir())
+        try {
+            runner.build()
+            fail("Configuration should crash on invalid data")
+        } catch (_: Exception) {
+        }
     }
 }
 

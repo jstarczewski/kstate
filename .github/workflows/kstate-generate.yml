@@ -11,5 +11,5 @@ jobs:
         with:
           java-version: 11
       - name: Build with Gradle
-        run: ./gradlew kstate-generate:detekt kstate-generate:build
+        run: ./gradlew kstate-generate:detekt kstate-generate:build kstate-generate:test
 

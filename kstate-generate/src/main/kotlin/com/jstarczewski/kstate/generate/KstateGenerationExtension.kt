@@ -1,8 +1,9 @@
 package com.jstarczewski.kstate.generate
 
-interface KstateGenerationExtension {
+@Suppress("UnnecessaryAbstractClass")
+abstract class KstateGenerationExtension {
 
-    var outputDir: String
+    var outputDir: String = "templates"
 
-    var sharedModuleName: String
+    var sharedModuleName: String = "shared"
 }
