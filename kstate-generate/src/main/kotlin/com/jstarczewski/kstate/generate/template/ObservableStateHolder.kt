@@ -13,13 +13,14 @@ object ObservableStateHolder : FileToGenerate() {
         var stateHolder: StateHolder
 
         init(_ stateHolder: StateHolder) {
-             self.stateHolder = stateHolder
-             self.stateHolder.binder.objectWillChange = { [weak self] in
-                 DispatchQueue.main.async {
+            self.stateHolder = stateHolder
+            self.stateHolder.binder.objectWillChange = { [weak self] in
+                DispatchQueue.main.async {
                     self?.objectWillChange.send()
-                 }
-             }
+                }
+            }
         }
     }
+    
     """.trimIndent()
 }
