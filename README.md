@@ -1,6 +1,17 @@
 ## Work in Progress
 Project is under development. Currently only a local version used within a sample KMM app is available as a way to have
-some fun with the source code.
+some fun with the source code. 
+
+### Local development
+
+To play with the library, create a sample KMM app or use the [example app available on Github](https://github.com/jstarczewski/kstate-samples).
+The sample probably will not build, because library must be published to `mavenLocal`.
+#### Setup
+To publish to `mavenLocal` clone the project and execute the following gradle tasks.
+```
+./gradlew kstate-generate:publishToMavenLocal kstate-core:publishToMavenLocal
+```
+[Now the sample app available on Github](https://github.com/jstarczewski/kstate-samples) should build and work properly. 
 ## Overview
 
 Make state values defined in KMM shared module easy to observe within Jetpack Compose and SwiftUI code with near zero 
@@ -73,13 +84,6 @@ struct SimpleView: View {
 	}
 }
 ```
-## Setup
-To run and play with the project locally, clone the repository and then publish projects
-`kstate-generate` and `kstate-core` to Maven local repository with help of Gradle.
-
-```
-./gradlew kstate-generate:publishToMavenLocal kstate-core:publishToMavenLocal
-```
 
 ### Adding dependencies
 
@@ -97,19 +101,17 @@ val commonMain by getting {
 
 After publication, add `kstate-generate` plugin to your sample project top level `build.gradle.kts` file and configure
 generation destination for iOS with
-`generateConfig` DSL.
+`swiftTemplates` DSL.
 
 ```
 plugins {
     id("com.jstarczewski.kstate.generate").version("0.0.2")
 }
 
-generationConfig {
+swiftTemplates {
 
-    create("ios") {
-        outputDir.set("ios/ios/StateHolder")
-        sharedModuleName.set("common")
-    }
+    outputDir = "$expectedRelativeFilesPath"
+    sharedModuleName = "common"
 }
 ```
 
