@@ -1,18 +1,17 @@
+enableFeaturePreview("VERSION_CATALOGS")
+
 pluginManagement {
     repositories {
         google()
         gradlePluginPortal()
         mavenCentral()
-        mavenLocal()
+        maven {
+            setUrl("https://oss.sonatype.org/content/repositories/snapshots")
+        }
     }
+    includeBuild("kstate-convention")
 }
 
-plugins {
-    id("com.android.library").version("7.2.0").apply(false)
-    kotlin("multiplatform").version("1.7.20").apply(false)
-    id("org.jetbrains.dokka").version("1.7.20").apply(false)
-    id("io.gitlab.arturbosch.detekt").version("1.22.0").apply(false)
-}
 
 dependencyResolutionManagement {
     repositories {

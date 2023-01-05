@@ -1,9 +1,14 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
-    `maven-publish`
-    id("org.jetbrains.dokka")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kstate.product)
+    alias(libs.plugins.vanitech.junit)
+    jacoco
 }
+
+group = "com.jstarczewski"
+version = "0.0.2"
 
 kotlin {
     android {
@@ -24,15 +29,20 @@ kotlin {
         val commonMain by getting
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(libs.kotlin.test)
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation("androidx.compose.runtime:runtime:1.3.1")
+                implementation(libs.androidx.compose.runtime)
             }
         }
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test.junit)
+                implementation(libs.junit)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -56,18 +66,10 @@ kotlin {
 
 android {
     namespace = "com.jstarczewski.kstate"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
     }
 }
 
-group = "com.jstarczewski"
-version = "0.0.2"
-
-publishing {
-    repositories {
-        mavenLocal()
-    }
-}

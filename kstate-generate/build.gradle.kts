@@ -1,16 +1,21 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     `java-gradle-plugin`
-    id("org.jetbrains.kotlin.jvm")
-    `maven-publish`
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kstate.product)
 }
+
+group = "com.jstarczewski.kstate"
+version = "0.0.2"
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation(platform(libs.kotlin.bom))
+    implementation(libs.kotlin.stdlib)
 }
 
 testing {
@@ -20,11 +25,10 @@ testing {
         }
 
         val functionalTest by registering(JvmTestSuite::class) {
-            useKotlinTest()
+            useJUnit()
 
             dependencies {
-                // functionalTest test suite depends on the production code in tests
-                implementation(project)
+                implementation(project())
             }
 
             targets {
@@ -38,7 +42,7 @@ testing {
 
 gradlePlugin {
 
-    val greeting by plugins.creating {
+    val generate by plugins.creating {
         id = "com.jstarczewski.kstate.generate"
         implementationClass = "com.jstarczewski.kstate.generate.KstateGeneratePlugin"
     }
@@ -48,13 +52,4 @@ gradlePlugin.testSourceSets(sourceSets["functionalTest"])
 
 tasks.named<Task>("check") {
     dependsOn(testing.suites.named("functionalTest"))
-}
-
-group = "com.jstarczewski.kstate"
-version = "0.1.1"
-
-publishing {
-    repositories {
-        mavenLocal()
-    }
 }

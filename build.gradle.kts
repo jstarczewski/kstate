@@ -1,24 +1,10 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("io.gitlab.arturbosch.detekt")
-}
-
-subprojects {
-    apply(plugin = "io.gitlab.arturbosch.detekt")
-
-    dependencies {
-        detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.22.0")
-    }
-
-    detekt {
-        buildUponDefaultConfig = true
-        allRules = false
-        autoCorrect = true
-        parallel = true
-        source = files(
-            "$rootDir/kstate-core/src",
-            "$rootDir/kstate-generate/src/main"
-        )
-    }
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.kstate.product) apply false
+    alias(libs.plugins.vanitech.junit) apply false
 }
 
 tasks.register("clean", Delete::class) {

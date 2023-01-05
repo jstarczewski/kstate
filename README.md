@@ -4,7 +4,19 @@ some fun with the source code.
 ## Overview
 
 Make state values defined in KMM shared module easy to observe within Jetpack Compose and SwiftUI code with near zero 
-boilerplate.
+boilerplate by implementation of `StateHolder` interface on class providing data to UI.
+
+```mermaid
+flowchart RL
+    subgraph KMM Shared Module
+    StateHolder 
+    end
+    subgraph iOS/Androd
+    View
+    end
+    StateHolder -- state --> View
+    View -- event --> StateHolder
+```
 
 ### Documentation
 
@@ -27,7 +39,7 @@ class SimpleViewModel : KmmViewModel(), StateHolder by StateHolder() {
 }
 ```
 ### Android
-State changes in `@Composable` functions are reflected as shared `State` is available as Compose `MutableState`
+State changes in `@Composable` functions are reflected because shared `State` on Android platform is exposed as Compose `MutableState`
 ```kotlin
 @Composable
 fun SimpleScreen() {
@@ -89,7 +101,7 @@ generation destination for iOS with
 
 ```
 plugins {
-    id("com.jstarczewski.kstate.generate").version("0.1.1")
+    id("com.jstarczewski.kstate.generate").version("0.0.2")
 }
 
 generationConfig {
