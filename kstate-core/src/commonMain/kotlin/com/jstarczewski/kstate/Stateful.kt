@@ -3,11 +3,11 @@ package com.jstarczewski.kstate
 import kotlin.reflect.KProperty
 
 /**
- * State<T : Any> is a [property delegate](https://kotlinlang.org/docs/delegated-properties.html) that
+ * Stateful<T : Any> is a [property delegate](https://kotlinlang.org/docs/delegated-properties.html) that
  * represents a wrapper of type T which provides platform specific implementation allowing to receive update on target
  * platforms that happen during write operations from KMM shared module.
  */
-expect open class State<T : Any> {
+expect open class Stateful<T : Any> {
 
     open operator fun getValue(thisRef: Any?, property: KProperty<*>): T
 
@@ -15,7 +15,7 @@ expect open class State<T : Any> {
 }
 
 /**
- * Returns [State] of type T
+ * Returns [Stateful] of type T
  *
  * This function can be used with `by` syntax
  *
@@ -24,8 +24,8 @@ expect open class State<T : Any> {
  * ```
  * @param initialValue initial value of type T
  * @receiver [StateHolder]
- * @return [State] of type T
+ * @return [Stateful] of type T
  */
-expect fun <T : Any> StateHolder.state(
+expect fun <T : Any> StateHolder.stateful(
     initialValue: T
-): State<T>
+): Stateful<T>

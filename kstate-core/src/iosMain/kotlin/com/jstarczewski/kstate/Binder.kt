@@ -12,7 +12,7 @@ package com.jstarczewski.kstate
 actual open class Binder {
 
     /**
-     * On write operation the value is invoked to deliver updates of all stored [State] properties withing a context of
+     * On write operation the value is invoked to deliver updates of all stored [Stateful] properties withing a context of
      * [StateHolder] the [Binder] is associated with
      */
     open var objectWillChange: () -> Unit = {}

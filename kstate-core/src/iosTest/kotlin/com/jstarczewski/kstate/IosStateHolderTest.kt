@@ -10,7 +10,7 @@ class IosStateHolderTest {
     @Test
     fun `initial isLoading state is equal initial value of false`() {
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
+            var isLoading by stateful(false)
         }
         assertFalse(stateHolder.isLoading)
     }
@@ -18,7 +18,7 @@ class IosStateHolderTest {
     @Test
     fun `binder callback is invoked on isLoading state change to true`() {
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
+            var isLoading by stateful(false)
         }
         stateHolder.binder.objectWillChange = { assertTrue(true) }
         stateHolder.isLoading = true
@@ -28,7 +28,7 @@ class IosStateHolderTest {
     fun `binder callback is invoked two time when write operations are made to isLoading state`() {
         var counter = 0
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
+            var isLoading by stateful(false)
         }
         stateHolder.binder.objectWillChange = { counter++ }
         stateHolder.isLoading = true
@@ -40,8 +40,8 @@ class IosStateHolderTest {
     fun `binder callback is invoked two time when write operation to two separate state values is made`() {
         var counter = 0
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
-            var errorCount by state(0)
+            var isLoading by stateful(false)
+            var errorCount by stateful(0)
         }
         stateHolder.binder.objectWillChange = { counter++ }
         stateHolder.isLoading = true
@@ -62,7 +62,7 @@ class IosStateHolderTest {
         }
 
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
+            var isLoading by stateful(false)
 
             override val binder: Binder = customBinder
         }

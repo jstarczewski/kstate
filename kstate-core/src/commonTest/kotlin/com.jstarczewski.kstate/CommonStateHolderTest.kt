@@ -9,7 +9,7 @@ class CommonStateHolderTest {
     @Test
     fun `initial isLoading state is equal initial value of false`() {
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
+            var isLoading by stateful(false)
         }
         assertFalse(stateHolder.isLoading)
     }
@@ -17,7 +17,7 @@ class CommonStateHolderTest {
     @Test
     fun `isLoading state changed from false to true changes to true`() {
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
+            var isLoading by stateful(false)
         }
         stateHolder.isLoading = true
         assertTrue(stateHolder.isLoading)
