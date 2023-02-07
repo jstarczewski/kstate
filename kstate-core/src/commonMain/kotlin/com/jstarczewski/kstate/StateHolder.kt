@@ -1,10 +1,10 @@
 package com.jstarczewski.kstate
 
 /**
- * Classes that aim to provide an [State] that platforms can observe should implement this
+ * Classes that aim to provide an [Stateful] that platforms can observe should implement this
  * interface to allow easy binding
  * using auto-generated files for iOS. Implementing [StateHolder] is provides also a DSL for creating various
- * [State] implementation.
+ * [Stateful] implementation.
  *
  * Recommended way to implement [StateHolder] interface is to us delegation pattern.
  * ```
