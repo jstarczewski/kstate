@@ -22,6 +22,16 @@ expect open class Stateful<T : Any> {
  * ```
  * var stateful : String by stateful("Example")
  * ```
+ * To update param created by `stateful` simply write new value to it. This will lead to changes on platform side.
+ * Note that write operation to a field is not synchronized and synchronization is on user side.
+ * ```
+ * var stateful : String by stateful("Example")
+ *
+ * fun update() {
+ *     stateful = "Other example"
+ * }
+ * ```
+ *
  * @param initialValue initial value of type T
  * @receiver [StateHolder]
  * @return [Stateful] of type T
