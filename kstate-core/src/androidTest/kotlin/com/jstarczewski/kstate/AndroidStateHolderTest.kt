@@ -10,7 +10,7 @@ class AndroidStateHolderTest {
     @Test
     fun `initial isLoading state is equal initial value of false`() {
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
+            var isLoading by stateful(false)
         }
         assertFalse(stateHolder.isLoading)
     }
@@ -18,7 +18,7 @@ class AndroidStateHolderTest {
     @Test
     fun `isLoading state does not to true change withing snapshot if it was not applied`() {
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
+            var isLoading by stateful(false)
         }
         val snapshot = Snapshot.takeMutableSnapshot()
         assertFalse(stateHolder.isLoading)
@@ -31,7 +31,7 @@ class AndroidStateHolderTest {
     @Test
     fun `isLoading state changes to true within a snapshot after applying`() {
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
+            var isLoading by stateful(false)
         }
         val snapshot = Snapshot.takeMutableSnapshot()
         assertFalse(stateHolder.isLoading)
@@ -45,7 +45,7 @@ class AndroidStateHolderTest {
     @Test
     fun `isLoading state changes outside of snapshot to true`() {
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
+            var isLoading by stateful(false)
         }
         stateHolder.isLoading = true
         assertTrue { stateHolder.isLoading }
@@ -54,7 +54,7 @@ class AndroidStateHolderTest {
     @Test
     fun `isLoading state changes for second snapshot when it is taken after the first one`() {
         val stateHolder = object : StateHolder by StateHolder() {
-            var isLoading by state(false)
+            var isLoading by stateful(false)
         }
         val snapshot = Snapshot.takeMutableSnapshot()
         snapshot.enter {

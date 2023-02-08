@@ -7,8 +7,8 @@ plugins {
     jacoco
 }
 
-group = "com.jstarczewski"
-version = "0.0.2"
+group = "com.jstarczewski.kstate"
+version = "0.0.3"
 
 kotlin {
     android {
