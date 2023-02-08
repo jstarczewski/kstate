@@ -115,6 +115,59 @@ swiftTemplates {
 }
 ```
 
+Depending on whether the for sake of the project architecture the `kstate-core` library is 
+[exported or not](https://kotlinlang.org/docs/multiplatform-build-native-binaries.html#export-dependencies-to-binaries) 
+additional templates setup may be needed.
+
+The default behaviour is that the `kstate-core` is not exported and no further configuration is needed, but for 
+exported `kstate-core` where the export example is contained withing the following snippet of `build.gradle.kts` file.
+
+```
+kotlin {
+    android()
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "common"
+            export(project(":feature:saveable"))
+            export(project(":feature:obtainable"))
+            export("com.jstarczewski.kstate:kstate-core:0.0.3")
+        }
+    }
+
+    sourceSets {
+        val commonTest by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                api(project(":feature:saveable"))
+                api(project(":feature:obtainable"))
+                api("com.jstarczewski.kstate:kstate-core:0.0.3")
+            }
+        }
+    // Rest of build.gradle.kts file....    
+```
+
+Templates need extra configuration to work. Add the following `coreLibraryExported` flag set to `true` to `swiftTempaltes` config.
+
+```
+plugins {
+    id("com.jstarczewski.kstate.generate").version("0.0.3")
+}
+
+swiftTemplates {
+
+    outputDir = "../ios/ios/StateHolder"
+    sharedModuleName = "common"
+    // On default it is set to false
+    coreLibraryExported = true
+}
+```
+
 After successfully applying the plugin generate Swift wrappers. Files should appear in `outputDir` specified in
 configuration
 block.
