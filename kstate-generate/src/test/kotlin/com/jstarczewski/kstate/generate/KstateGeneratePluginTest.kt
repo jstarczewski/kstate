@@ -25,7 +25,7 @@ class KstateGeneratePluginTest {
     fun `plugin on default registers task with default outputDir`() {
         val project = ProjectBuilder.builder().build()
         project.plugins.apply("com.jstarczewski.kstate.generate")
-        project.tasks.withType(GenerateSwiftTemplatesTask::class.java).first().apply {
+        project.tasks.withType(GenerateSwiftTemplatesTask::class.java).first().run {
             assertTrue(outputDir.get().toString().endsWith("templates"))
         }
     }
@@ -34,8 +34,17 @@ class KstateGeneratePluginTest {
     fun `plugin on default registers task with default shared module name`() {
         val project = ProjectBuilder.builder().build()
         project.plugins.apply("com.jstarczewski.kstate.generate")
-        project.tasks.withType(GenerateSwiftTemplatesTask::class.java).first().apply {
+        project.tasks.withType(GenerateSwiftTemplatesTask::class.java).first().run {
             assertEquals("shared", sharedModuleName.get())
+        }
+    }
+
+    @Test
+    fun `plugin on default registers task with coreLibraryExported false`() {
+        val project = ProjectBuilder.builder().build()
+        project.plugins.apply("com.jstarczewski.kstate.generate")
+        project.tasks.withType(GenerateSwiftTemplatesTask::class.java).first().run {
+            assertEquals(false, coreLibraryExported.get())
         }
     }
 }

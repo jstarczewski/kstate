@@ -27,7 +27,7 @@ class KstateGeneratePluginFunctionalTest {
             import Foundation
             import common
 
-            class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: common.KstateStateHolder {
+            class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: common.Kstate_coreStateHolder {
 
                 var stateHolder: StateHolder
 
@@ -71,6 +71,57 @@ class KstateGeneratePluginFunctionalTest {
     }
 
     @Test
+    fun `generated ObservableStateHolder with extension swift content and core library exported is equal to template content`() {
+
+        val expectedObservableStateHolderContent = """
+            import Foundation
+            import common
+
+            class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: common.StateHolder {
+
+                var stateHolder: StateHolder
+
+                init(_ stateHolder: StateHolder) {
+                    self.stateHolder = stateHolder
+                    self.stateHolder.binder.objectWillChange = { [weak self] in
+                        DispatchQueue.main.async {
+                            self?.objectWillChange.send()
+                        }
+                    }
+                }
+            }
+            
+        """.trimIndent()
+
+        val expectedRelativeFilesPath = "ios/ios/StateHolder"
+        getSettingsFile().writeText("")
+        getBuildFile().writeText(
+            """
+        plugins {
+            id('com.jstarczewski.kstate.generate')
+        }
+        
+        swiftTemplates {
+
+            outputDir = "$expectedRelativeFilesPath"
+            sharedModuleName = "common"
+            coreLibraryExported = true
+        }
+        """
+        )
+        val runner = GradleRunner.create()
+        runner.forwardOutput()
+        runner.withPluginClasspath()
+        runner.withArguments("generateSwiftTemplates")
+        runner.withProjectDir(getProjectDir())
+        runner.build()
+
+        val content = File("${getProjectDir().absolutePath}/$expectedRelativeFilesPath/ObservableStateHolder.swift")
+            .readText()
+        assertEquals(expectedObservableStateHolderContent, content)
+    }
+
+    @Test
     fun `generated ObservedStateHolder with extension swift content is equal to template content`() {
 
         val expectedObservedStateHolderContent = """
@@ -79,7 +130,7 @@ class KstateGeneratePluginFunctionalTest {
             import common
 
             @propertyWrapper
-            struct ObservedStateHolder<StateHolder>: DynamicProperty where StateHolder: common.KstateStateHolder {
+            struct ObservedStateHolder<StateHolder>: DynamicProperty where StateHolder: common.Kstate_coreStateHolder {
 
                 @ObservedObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
 
@@ -127,6 +178,63 @@ class KstateGeneratePluginFunctionalTest {
     }
 
     @Test
+    fun `generated ObservedStateHolder with extension swift content and core library exported is equal to template content`() {
+
+        val expectedObservedStateHolderContent = """
+            import Foundation
+            import SwiftUI
+            import common
+
+            @propertyWrapper
+            struct ObservedStateHolder<StateHolder>: DynamicProperty where StateHolder: common.StateHolder {
+
+                @ObservedObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
+
+                init(wrappedValue: StateHolder) {
+                    self.stateHolderObservable = ObservableStateHolder(wrappedValue)
+                }
+
+                var wrappedValue: StateHolder {
+                    get { return stateHolderObservable.stateHolder }
+                    set { stateHolderObservable.stateHolder = newValue }
+                }
+
+                var projectedValue: ObservedObject<ObservableStateHolder<StateHolder>>.Wrapper {
+                    self.${'$'}stateHolderObservable
+                }
+            }
+            
+        """.trimIndent()
+
+        val expectedRelativeFilesPath = "ios/ios/StateHolder"
+        getSettingsFile().writeText("")
+        getBuildFile().writeText(
+            """
+        plugins {
+            id('com.jstarczewski.kstate.generate')
+        }
+        
+        swiftTemplates {
+
+            outputDir = "$expectedRelativeFilesPath"
+            sharedModuleName = "common"
+            coreLibraryExported = true
+        }
+        """
+        )
+        val runner = GradleRunner.create()
+        runner.forwardOutput()
+        runner.withPluginClasspath()
+        runner.withArguments("generateSwiftTemplates")
+        runner.withProjectDir(getProjectDir())
+        runner.build()
+
+        val content = File("${getProjectDir().absolutePath}/$expectedRelativeFilesPath/ObservedStateHolder.swift")
+            .readText()
+        assertEquals(expectedObservedStateHolderContent, content)
+    }
+
+    @Test
     fun `generated StateStateHolder with extension swift content is equal to template content`() {
 
         val expectedStateStateHolderContent = """
@@ -135,7 +243,7 @@ class KstateGeneratePluginFunctionalTest {
             import common
 
             @propertyWrapper
-            struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: common.KstateStateHolder {
+            struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: common.Kstate_coreStateHolder {
 
                 @StateObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
 
@@ -183,6 +291,63 @@ class KstateGeneratePluginFunctionalTest {
     }
 
     @Test
+    fun `generated StateStateHolder with extension swift content and core library exported is equal to template content`() {
+
+        val expectedStateStateHolderContent = """
+            import Foundation
+            import SwiftUI
+            import common
+
+            @propertyWrapper
+            struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: common.StateHolder {
+
+                @StateObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
+
+                init(wrappedValue: StateHolder) {
+                    _stateHolderObservable = StateObject(wrappedValue: ObservableStateHolder(wrappedValue))
+                }
+
+                var wrappedValue: StateHolder {
+                    get { return stateHolderObservable.stateHolder }
+                    set { stateHolderObservable.stateHolder = newValue }
+                }
+
+                var projectedValue: ObservedObject<ObservableStateHolder<StateHolder>>.Wrapper {
+                    self.${'$'}stateHolderObservable
+                }
+            }
+            
+        """.trimIndent()
+
+        val expectedRelativeFilesPath = "ios/ios/StateHolder"
+        getSettingsFile().writeText("")
+        getBuildFile().writeText(
+            """
+        plugins {
+            id('com.jstarczewski.kstate.generate')
+        }
+        
+        swiftTemplates {
+
+            outputDir = "$expectedRelativeFilesPath"
+            sharedModuleName = "common"
+            coreLibraryExported = true
+        }
+        """
+        )
+        val runner = GradleRunner.create()
+        runner.forwardOutput()
+        runner.withPluginClasspath()
+        runner.withArguments("generateSwiftTemplates")
+        runner.withProjectDir(getProjectDir())
+        runner.build()
+
+        val content = File("${getProjectDir().absolutePath}/$expectedRelativeFilesPath/StateStateHolder.swift")
+            .readText()
+        assertEquals(expectedStateStateHolderContent, content)
+    }
+
+    @Test
     fun `no configuration should result in configuration with default parameters`() {
 
         val expectedStateStateHolderContent = """
@@ -191,7 +356,7 @@ class KstateGeneratePluginFunctionalTest {
             import shared
 
             @propertyWrapper
-            struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: shared.KstateStateHolder {
+            struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: shared.Kstate_coreStateHolder {
 
                 @StateObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
 
