@@ -15,9 +15,8 @@ actual open class Stateful<T : Any>(
 ) {
 
     /**
-     * Holds the state that is observed withing `@Composable` functions on Android platform when the target platform
-     * accesses the [Stateful] wrapper. It's value changes when
-     * write operation is performed to [Stateful] and then it's value is reflected on target platform after `Snapshot`
+     * Holds the stateful that is observed within the `@Composable` functions on Android platform. It's value changes when
+     * write operation is performed to [Stateful] and then the value is reflected on target platform after `Snapshot`
      * is applied.
      */
     protected var value by mutableStateOf(initialValue)
