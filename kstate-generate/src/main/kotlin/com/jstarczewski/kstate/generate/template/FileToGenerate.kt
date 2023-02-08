@@ -7,7 +7,12 @@ sealed class FileToGenerate {
     abstract val fileContent: String
 
     val projectTokenName: String = "&PROJECT_TOKEN"
+
+    val stateHolderPrefixTokenName: String = "&STATE_HOLDER_PREFIX_TOKEN"
 }
 
-fun FileToGenerate.generateContent(projectName: String) =
-    fileContent.replace(projectTokenName, projectName)
+fun FileToGenerate.generateContent(projectName: String, isCoreLibraryExported: Boolean) = fileContent
+    .replace(projectTokenName, projectName)
+    .replace(stateHolderPrefixTokenName, libraryNamePrefix(isCoreLibraryExported))
+
+private fun libraryNamePrefix(isCoreLibraryExported: Boolean) = if (isCoreLibraryExported) "" else "Kstate_core"

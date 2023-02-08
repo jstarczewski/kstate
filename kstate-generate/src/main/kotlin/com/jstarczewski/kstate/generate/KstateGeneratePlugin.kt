@@ -53,6 +53,7 @@ class KstateGeneratePlugin : Plugin<Project> {
             }
             it.outputDir.set(File(config.outputDir))
             it.sharedModuleName.set(config.sharedModuleName)
+            it.coreLibraryExported.set(config.coreLibraryExported)
         }
     }
 }
