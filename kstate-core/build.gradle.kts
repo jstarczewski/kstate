@@ -7,7 +7,7 @@ plugins {
     jacoco
 }
 
-group = "com.jstarczewski"
+group = "com.jstarczewski.kstate"
 version = "0.0.3"
 
 kotlin {
