@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-    <title>State</title>
+    <title>Stateful</title>
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../";</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
@@ -40,7 +40,7 @@
             </a>
     </div>
     <div>
-0.0.2    </div>
+0.0.3    </div>
     <div class="pull-right d-flex">
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":kstate-core:dokkaHtml/androidMain">android</button>
@@ -56,13 +56,13 @@
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageIds="kstate-core::com.jstarczewski.kstate/State///PointingToDeclaration//222605980">
-  <div class="breadcrumbs"><a href="../../../index.html">kstate-core</a><span class="delimiter">/</span><a href="../index.html">com.jstarczewski.kstate</a><span class="delimiter">/</span><span class="current">State</span></div>
+<div class="main-content" id="content" pageIds="kstate-core::com.jstarczewski.kstate/Stateful///PointingToDeclaration//222605980">
+  <div class="breadcrumbs"><a href="../../../index.html">kstate-core</a><span class="delimiter">/</span><a href="../index.html">com.jstarczewski.kstate</a><span class="delimiter">/</span><span class="current">Stateful</span></div>
   <div class="cover ">
-    <h1 class="cover"><span><span>State</span></span></h1>
+    <h1 class="cover"><span><span>Stateful</span></span></h1>
     <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
       <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kstate-core:dokkaHtml/androidMain" data-filterable-set=":kstate-core:dokkaHtml/androidMain" data-active="" data-toggle=":kstate-core:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":kstate-core:dokkaHtml/commonMain" data-filterable-set=":kstate-core:dokkaHtml/commonMain" data-toggle=":kstate-core:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":kstate-core:dokkaHtml/iosMain" data-filterable-set=":kstate-core:dokkaHtml/iosMain" data-toggle=":kstate-core:dokkaHtml/iosMain">ios</button></div>
-<div class="content sourceset-dependent-content" data-togglable=":kstate-core:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">State</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><p class="paragraph">Actual implementation of <a href="index.html">State</a> on Android platform</p></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":kstate-core:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">State</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><p class="paragraph">State<T : Any> is a <a href="https://kotlinlang.org/docs/delegated-properties.html">property delegate</a> that represents a wrapper of type T which provides platform specific implementation allowing to receive update on target platforms that happen during write operations from KMM shared module.</p></div><div class="content sourceset-dependent-content" data-togglable=":kstate-core:dokkaHtml/iosMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">State</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><p class="paragraph">Actual implementation of <a href="index.html">State</a> for iOS platform</p></div>    </div>
+<div class="content sourceset-dependent-content" data-togglable=":kstate-core:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">Stateful</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><p class="paragraph">Actual implementation of <a href="index.html">Stateful</a> on Android platform</p></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":kstate-core:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">Stateful</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><p class="paragraph"><a href="index.html">Stateful</a> is a <a href="https://kotlinlang.org/docs/delegated-properties.html">property delegate</a> that represents a wrapper of type T which provides platform specific implementation allowing to receive value updates on target platforms. The value wrapped by <a href="index.html">Stateful</a> is updated after write operation.</p></div><div class="content sourceset-dependent-content" data-togglable=":kstate-core:dokkaHtml/iosMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">Stateful</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><p class="paragraph">Actual implementation of <a href="index.html">Stateful</a> for iOS platform</p></div>    </div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
@@ -71,51 +71,51 @@
       <div data-togglable="Parameters">
         <div class="platform-hinted WithExtraAttributes with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Parameters">
           <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kstate-core:dokkaHtml/androidMain" data-filterable-set=":kstate-core:dokkaHtml/androidMain" data-active="" data-toggle=":kstate-core:dokkaHtml/androidMain">android</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":kstate-core:dokkaHtml/androidMain"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":kstate-core:dokkaHtml/androidMain" data-filterable-set=":kstate-core:dokkaHtml/androidMain"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>initial</span><wbr></wbr><span><span>Value</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">param that is going to be initial value of <span data-unresolved-link="com.jstarczewski.kstate/State/value/#/PointingToDeclaration/">value</span> <code class="lang-kotlin">mutableState</code></p></div></div></div></div></div></div></div></div>        </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kstate-core:dokkaHtml/androidMain"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":kstate-core:dokkaHtml/androidMain" data-filterable-set=":kstate-core:dokkaHtml/androidMain"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>initial</span><wbr></wbr><span><span>Value</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">param that is going to be initial value of <span data-unresolved-link="com.jstarczewski.kstate/Stateful/value/#/PointingToDeclaration/">value</span> <code class="lang-kotlin">mutableState</code></p></div></div></div></div></div></div></div></div>        </div>
       </div>
       <h2 class="tabbedcontent">Constructors</h2>
-      <div class="table" data-togglable="Constructors"><a data-name="-275475125%2FConstructors%2F-1999518732" anchor-label="State" id="-275475125%2FConstructors%2F-1999518732" data-filterable-set=":kstate-core:dokkaHtml/androidMain"></a>
+      <div class="table" data-togglable="Constructors"><a data-name="837269871%2FConstructors%2F-1999518732" anchor-label="Stateful" id="837269871%2FConstructors%2F-1999518732" data-filterable-set=":kstate-core:dokkaHtml/androidMain"></a>
         <div class="table-row" data-filterable-current=":kstate-core:dokkaHtml/androidMain" data-filterable-set=":kstate-core:dokkaHtml/androidMain">
           <div class="main-subrow keyValue TabbedContent">
             <div class=""><span class="inline-flex">
-                <div><a href="-state.html"><span><span>State</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-275475125%2FConstructors%2F-1999518732"></span>
+                <div><a href="-stateful.html"><span><span>Stateful</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="837269871%2FConstructors%2F-1999518732"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                   <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kstate-core:dokkaHtml/androidMain" data-filterable-set=":kstate-core:dokkaHtml/androidMain" data-active="" data-toggle=":kstate-core:dokkaHtml/androidMain">android</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":kstate-core:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="-state.html"><span class="token function">State</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">initialValue<span class="token operator">: </span><a href="index.html">T</a></span></span><span class="token punctuation">)</span></div></div>                </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kstate-core:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="-stateful.html"><span class="token function">Stateful</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">initialValue<span class="token operator">: </span><a href="index.html">T</a></span></span><span class="token punctuation">)</span></div></div>                </div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="898640306%2FConstructors%2F1293095950" anchor-label="State" id="898640306%2FConstructors%2F1293095950" data-filterable-set=":kstate-core:dokkaHtml/iosMain"></a>
+<a data-name="-1853327658%2FConstructors%2F1293095950" anchor-label="Stateful" id="-1853327658%2FConstructors%2F1293095950" data-filterable-set=":kstate-core:dokkaHtml/iosMain"></a>
         <div class="table-row" data-filterable-current=":kstate-core:dokkaHtml/iosMain" data-filterable-set=":kstate-core:dokkaHtml/iosMain">
           <div class="main-subrow keyValue TabbedContent">
             <div class=""><span class="inline-flex">
-                <div><a href="-state.html"><span><span>State</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="898640306%2FConstructors%2F1293095950"></span>
+                <div><a href="-stateful.html"><span><span>Stateful</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1853327658%2FConstructors%2F1293095950"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
                 <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                   <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kstate-core:dokkaHtml/iosMain" data-filterable-set=":kstate-core:dokkaHtml/iosMain" data-active="" data-toggle=":kstate-core:dokkaHtml/iosMain">ios</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":kstate-core:dokkaHtml/iosMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="-state.html"><span class="token function">State</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">initialValue<span class="token operator">: </span><a href="index.html">T</a><span class="token punctuation">, </span></span><span class="parameter ">objectWillChange<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div>                </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kstate-core:dokkaHtml/iosMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="-stateful.html"><span class="token function">Stateful</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">initialValue<span class="token operator">: </span><a href="index.html">T</a><span class="token punctuation">, </span></span><span class="parameter ">objectWillChange<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div>                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <h2 class="">Functions</h2>
-      <div class="table" data-togglable="Functions"><a data-name="-137377655%2FFunctions%2F222605980" anchor-label="getValue" id="-137377655%2FFunctions%2F222605980" data-filterable-set=":kstate-core:dokkaHtml/commonMain :kstate-core:dokkaHtml/androidMain :kstate-core:dokkaHtml/iosMain"></a>
+      <div class="table" data-togglable="Functions"><a data-name="-443890362%2FFunctions%2F222605980" anchor-label="getValue" id="-443890362%2FFunctions%2F222605980" data-filterable-set=":kstate-core:dokkaHtml/commonMain :kstate-core:dokkaHtml/androidMain :kstate-core:dokkaHtml/iosMain"></a>
         <div class="table-row" data-filterable-current=":kstate-core:dokkaHtml/commonMain :kstate-core:dokkaHtml/androidMain :kstate-core:dokkaHtml/iosMain" data-filterable-set=":kstate-core:dokkaHtml/commonMain :kstate-core:dokkaHtml/androidMain :kstate-core:dokkaHtml/iosMain">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
                 <div><a href="get-value.html"><span>get</span><wbr></wbr><span><span>Value</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-137377655%2FFunctions%2F222605980"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-443890362%2FFunctions%2F222605980"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
@@ -127,12 +127,12 @@
             </div>
           </div>
         </div>
-<a data-name="-92978801%2FFunctions%2F222605980" anchor-label="setValue" id="-92978801%2FFunctions%2F222605980" data-filterable-set=":kstate-core:dokkaHtml/commonMain :kstate-core:dokkaHtml/androidMain :kstate-core:dokkaHtml/iosMain"></a>
+<a data-name="-537268942%2FFunctions%2F222605980" anchor-label="setValue" id="-537268942%2FFunctions%2F222605980" data-filterable-set=":kstate-core:dokkaHtml/commonMain :kstate-core:dokkaHtml/androidMain :kstate-core:dokkaHtml/iosMain"></a>
         <div class="table-row" data-filterable-current=":kstate-core:dokkaHtml/commonMain :kstate-core:dokkaHtml/androidMain :kstate-core:dokkaHtml/iosMain" data-filterable-set=":kstate-core:dokkaHtml/commonMain :kstate-core:dokkaHtml/androidMain :kstate-core:dokkaHtml/iosMain">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
                 <div><a href="set-value.html"><span>set</span><wbr></wbr><span><span>Value</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-92978801%2FFunctions%2F222605980"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-537268942%2FFunctions%2F222605980"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
