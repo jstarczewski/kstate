@@ -110,7 +110,7 @@ plugins {
 
 swiftTemplates {
 
-    outputDir = "$expectedRelativeFilesPath"
+    outputDir = "../ios/ios/StateHolder"
     sharedModuleName = "common"
 }
 ```
