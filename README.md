@@ -4,14 +4,14 @@ some fun with the source code.
 
 ### Local development
 
-To play with the library, create a sample KMM app or use the [example app available on Github](https://github.com/jstarczewski/kstate-samples).
+To play with the library, create a sample KMM app or use the [example app available on GitHub](https://github.com/jstarczewski/kstate-samples).
 The sample probably will not build, because library must be published to `mavenLocal`.
 #### Setup
 To publish to `mavenLocal` clone the project and execute the following gradle tasks.
 ```
 ./gradlew kstate-generate:publishToMavenLocal kstate-core:publishToMavenLocal
 ```
-[Now the sample app available on Github](https://github.com/jstarczewski/kstate-samples) should build and work properly. 
+[Now the sample app available on GitHub](https://github.com/jstarczewski/kstate-samples) should build and work properly. 
 ## Overview
 
 Make state values defined in KMM shared module easy to observe within Jetpack Compose and SwiftUI code with near zero 
@@ -22,7 +22,7 @@ flowchart RL
     subgraph KMM Shared Module
     StateHolder 
     end
-    subgraph iOS/Androd
+    subgraph iOS/Android
     View
     end
     StateHolder -- state --> View
@@ -36,16 +36,16 @@ Documentation is available [here](https://jstarczewski.github.io/kstate/index.ht
 ### Example
 1. Make your class in KMM shared module a `StateHolder` by implementing `StateHolder` interface via interface delegation
 pattern with `StateHolder()` function.
-2. Use `StateHolder` DSL functions to declare `State` in shared `StateHolder` with `state` delegate.
+2. Use `StateHolder` DSL functions to declare `Stateful` in shared `StateHolder` with `stateful` delegate.
 ```Kotlin
 class SimpleViewModel : KmmViewModel(), StateHolder by StateHolder() {
 
-    var message by state("Hello World")
+    var message by stateful("Hello World")
         private set
 
     fun updateMessage() = viewModelScope.launch {
         delay(500)
-        message = "Hello kstate"
+        message = "Hello k-state"
     }
 }
 ```
@@ -92,7 +92,7 @@ To use the `kstate-core` library add it to `dependencies` block inside KMM share
 ```
 val commonMain by getting {
     dependencies {
-        api("com.jstarczewski:kstate:0.0.2")
+        api("com.jstarczewski.kstate:kstate-core:0.0.3")
     }
 }
 ```
@@ -105,7 +105,7 @@ generation destination for iOS with
 
 ```
 plugins {
-    id("com.jstarczewski.kstate.generate").version("0.0.2")
+    id("com.jstarczewski.kstate.generate").version("0.0.3")
 }
 
 swiftTemplates {
