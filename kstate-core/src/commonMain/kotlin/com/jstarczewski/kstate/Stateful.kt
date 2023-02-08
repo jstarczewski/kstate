@@ -3,9 +3,9 @@ package com.jstarczewski.kstate
 import kotlin.reflect.KProperty
 
 /**
- * Stateful<T : Any> is a [property delegate](https://kotlinlang.org/docs/delegated-properties.html) that
- * represents a wrapper of type T which provides platform specific implementation allowing to receive update on target
- * platforms that happen during write operations from KMM shared module.
+ * [Stateful] is a [property delegate](https://kotlinlang.org/docs/delegated-properties.html) that
+ * represents a wrapper of type T which provides platform specific implementation allowing to receive value updates on target
+ * platforms. The value wrapped by [Stateful] is updated after write operation.
  */
 expect open class Stateful<T : Any> {
 
@@ -20,7 +20,7 @@ expect open class Stateful<T : Any> {
  * This function can be used with `by` syntax
  *
  * ```
- * var state : String by state("Example")
+ * var stateful : String by stateful("Example")
  * ```
  * @param initialValue initial value of type T
  * @receiver [StateHolder]
