@@ -1,17 +1,32 @@
-## Work in Progress
-Project is under development. Currently only a local version used within a sample KMM app is available as a way to have
-some fun with the source code. 
-
-### Local development
-
-To play with the library, create a sample KMM app or use the [example app available on GitHub](https://github.com/jstarczewski/kstate-samples).
-The sample probably will not build, because library must be published to `mavenLocal`.
-#### Setup
-To publish to `mavenLocal` clone the project and execute the following gradle tasks.
+## Quick setup
+Add `kstate-core` dependency to the `commonMain` source set.
+```Kotlin
+val commonMain by getting {
+      dependencies { 
+          implementation("com.jstarczewski.kstate:kstate-core:0.0.3") 
+      }
+}
 ```
-./gradlew kstate-generate:publishToMavenLocal kstate-core:publishToMavenLocal
+Add `kstate.generate` gradle plugin to proper gradle module to generate Swift wrappers.
+```Kotlin
+plugins {
+    id("com.jstarczewski.kstate.generate").version("0.0.3")
+}
 ```
-[Now the sample app available on GitHub](https://github.com/jstarczewski/kstate-samples) should build and work properly. 
+Configure wrappers by `kstate.generate` DSL syntax.
+```Kotlin
+swiftTemplates {
+
+    outputDir = "../ios/ios/StateHolder"
+    sharedModuleName = "common"
+    coreLibraryExported = false
+}
+```
+Generate templates by executing gradle task. 
+```
+./gradlew generateSwiftTemplates
+```
+[Link generated files](#link-generated-files) and add them to VCS. 
 ## Overview
 
 Make state values defined in KMM shared module easy to observe within Jetpack Compose and SwiftUI code with near zero 
@@ -32,6 +47,10 @@ flowchart RL
 ### Documentation
 
 Documentation is available [here](https://jstarczewski.github.io/kstate/index.html).
+
+### Samples
+
+Samples are available as an [example app on GitHub](https://github.com/jstarczewski/kstate-samples).
 
 ### Example
 1. Make your class in KMM shared module a `StateHolder` by implementing `StateHolder` interface via interface delegation
@@ -70,7 +89,7 @@ fun SimpleScreen() {
 ### iOS
 Apply `ObservedStateHolder` property wrapper to `SimpleViewModel` to automatically wire state change observation.
 
-**`ObservedStateHolder` is a utility property wrapper that will be generated during [library setup process](#Setup).**
+**`ObservedStateHolder` is a utility property wrapper that will be generated during [library setup process](#Quick setup).**
 ```Swift
 struct SimpleView: View {
     
@@ -175,7 +194,7 @@ block.
 ```
 ./gradlew generateSwiftTemplates
 ```
-
+### Link generated files
 To link generated files with your project, from XCode `File` menu click `Add files` and create group with sources.
 When the files are linked, run the `iOS` app to check whether everything builds. Maybe there are additional changes
 needed to be done in the files, but
