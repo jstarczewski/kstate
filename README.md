@@ -15,8 +15,8 @@ flowchart RL
     View -- event --> StateHolder
 ```
 
-Define a `ViewModel`, `Store` or whatever implementing a `StateHolder` interface inside your shared module. Use it in
-the platform. Follow the [example walkthrough](#example-walkthrough) for more details.
+Define a `ViewModel`, `Store` or whatever implementing a `StateHolder` interface inside your shared module. [Use it in
+the platform](#example-walkthrough).
 
 ```Kotlin
 class SimpleViewModel : KmmViewModel(), StateHolder by StateHolder() {
@@ -128,7 +128,7 @@ fun SimpleScreen() {
 Apply `ObservedStateHolder` property wrapper to `SimpleViewModel` to automatically wire state change observation.
 
 **`ObservedStateHolder` is a utility property wrapper that will be generated
-during [library setup process](#Quick setup).**
+during [library setup process](#quick-setup).**
 
 ```Swift
 struct SimpleView: View {
