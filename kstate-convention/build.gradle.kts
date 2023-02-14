@@ -4,6 +4,10 @@ plugins {
     `kotlin-dsl`
 }
 
+repositories {
+    gradlePluginPortal()
+}
+
 dependencies {
     implementation(libs.gradle.kotlin)
     implementation(libs.gradle.detekt)

@@ -1,21 +1,7 @@
-## Work in Progress
-Project is under development. Currently only a local version used within a sample KMM app is available as a way to have
-some fun with the source code. 
+# Overview
 
-### Local development
-
-To play with the library, create a sample KMM app or use the [example app available on GitHub](https://github.com/jstarczewski/kstate-samples).
-The sample probably will not build, because library must be published to `mavenLocal`.
-#### Setup
-To publish to `mavenLocal` clone the project and execute the following gradle tasks.
-```
-./gradlew kstate-generate:publishToMavenLocal kstate-core:publishToMavenLocal
-```
-[Now the sample app available on GitHub](https://github.com/jstarczewski/kstate-samples) should build and work properly. 
-## Overview
-
-Make state values defined in KMM shared module easy to observe within Jetpack Compose and SwiftUI code with near zero 
-boilerplate by implementation of `StateHolder` interface on class providing data to UI.
+Make state defined in KMM shared module easy to observe within Jetpack Compose and SwiftUI code with near zero
+boilerplate by implementation of `StateHolder` interface on class providing state to UI.
 
 ```mermaid
 flowchart RL
@@ -29,14 +15,9 @@ flowchart RL
     View -- event --> StateHolder
 ```
 
-### Documentation
+Define a `ViewModel`, `Store` or whatever implementing a `StateHolder` interface inside your shared module. [Use it in
+the platform](#example-walkthrough).
 
-Documentation is available [here](https://jstarczewski.github.io/kstate/index.html).
-
-### Example
-1. Make your class in KMM shared module a `StateHolder` by implementing `StateHolder` interface via interface delegation
-pattern with `StateHolder()` function.
-2. Use `StateHolder` DSL functions to declare `Stateful` in shared `StateHolder` with `stateful` delegate.
 ```Kotlin
 class SimpleViewModel : KmmViewModel(), StateHolder by StateHolder() {
 
@@ -49,8 +30,82 @@ class SimpleViewModel : KmmViewModel(), StateHolder by StateHolder() {
     }
 }
 ```
+
+## Quick setup
+
+Add `kstate-core` dependency to the `commonMain` source set.
+
+```Kotlin
+val commonMain by getting {
+    dependencies {
+        implementation("com.jstarczewski.kstate:kstate-core:0.0.3")
+    }
+}
+```
+
+Depending on the architecture consider [exporting the library](#export-kstate-core-library).
+
+Add `kstate.generate` gradle plugin to proper gradle module to generate Swift wrappers.
+
+```Kotlin
+plugins {
+    id("com.jstarczewski.kstate.generate").version("0.0.3")
+}
+```
+
+Configure wrappers by `kstate.generate` DSL syntax.
+
+```Kotlin
+swiftTemplates {
+
+    outputDir = "../ios/ios/StateHolder"
+    sharedModuleName = "common"
+    coreLibraryExported = false
+}
+```
+
+Generate templates for iOS app by executing following gradle task.
+
+```
+./gradlew generateSwiftTemplates
+```
+
+### [Link generated files](#link-generated-files) and add them to VCS.
+
+After generation the plugin is no longer needed and can be safely removed from the project configuration.
+
+### Documentation
+
+Documentation is available [here](https://jstarczewski.github.io/kstate/index.html).
+
+### Samples
+
+Samples are available as an [example app on GitHub](https://github.com/jstarczewski/kstate-samples).
+
+### Example walkthrough
+
+1. Make your class in KMM shared module a `StateHolder` by implementing `StateHolder` interface via interface delegation
+   pattern with `StateHolder()` function.
+2. Use `StateHolder` DSL functions to declare `Stateful` in shared `StateHolder` with `stateful` delegate.
+
+```Kotlin
+class SimpleViewModel : KmmViewModel(), StateHolder by StateHolder() {
+
+    var message by stateful("Hello World")
+        private set
+
+    fun updateMessage() = viewModelScope.launch {
+        delay(500)
+        message = "Hello k-state"
+    }
+}
+```
+
 ### Android
-State changes in `@Composable` functions are reflected because shared `State` on Android platform is exposed as Compose `MutableState`
+
+State changes in `@Composable` functions are reflected because shared `State` on Android platform is exposed as
+Compose `MutableState`
+
 ```kotlin
 @Composable
 fun SimpleScreen() {
@@ -67,10 +122,14 @@ fun SimpleScreen() {
     }
 }
 ```
+
 ### iOS
+
 Apply `ObservedStateHolder` property wrapper to `SimpleViewModel` to automatically wire state change observation.
 
-**`ObservedStateHolder` is a utility property wrapper that will be generated during [library setup process](#Setup).**
+**`ObservedStateHolder` is a utility property wrapper that will be generated
+during [library setup process](#quick-setup).**
+
 ```Swift
 struct SimpleView: View {
     
@@ -85,41 +144,13 @@ struct SimpleView: View {
 }
 ```
 
-### Adding dependencies
+### Export `kstate-core` library
 
-To use the `kstate-core` library add it to `dependencies` block inside KMM shared module
-
-```
-val commonMain by getting {
-    dependencies {
-        api("com.jstarczewski.kstate:kstate-core:0.0.3")
-    }
-}
-```
-
-### Generating `.swift` wrappers for iOS
-
-After publication, add `kstate-generate` plugin to your sample project top level `build.gradle.kts` file and configure
-generation destination for iOS with
-`swiftTemplates` DSL.
-
-```
-plugins {
-    id("com.jstarczewski.kstate.generate").version("0.0.3")
-}
-
-swiftTemplates {
-
-    outputDir = "../ios/ios/StateHolder"
-    sharedModuleName = "common"
-}
-```
-
-Depending on whether the for sake of the project architecture the `kstate-core` library is 
-[exported or not](https://kotlinlang.org/docs/multiplatform-build-native-binaries.html#export-dependencies-to-binaries) 
+Depending on whether the for sake of the project architecture the `kstate-core` library should be
+[exported or not](https://kotlinlang.org/docs/multiplatform-build-native-binaries.html#export-dependencies-to-binaries)
 additional templates setup may be needed.
 
-The default behaviour is that the `kstate-core` is not exported and no further configuration is needed, but for 
+The default behaviour is that the `kstate-core` is not exported and no further configuration is needed, but for
 exported `kstate-core` where the export example is contained withing the following snippet of `build.gradle.kts` file.
 
 ```
@@ -152,7 +183,8 @@ kotlin {
     // Rest of build.gradle.kts file....    
 ```
 
-Templates need extra configuration to work. Add the following `coreLibraryExported` flag set to `true` to `swiftTempaltes` config.
+Templates need extra configuration to work. Add the following `coreLibraryExported` flag set to `true`
+to `swiftTempaltes` config.
 
 ```
 plugins {
@@ -168,13 +200,16 @@ swiftTemplates {
 }
 ```
 
-After successfully applying the plugin generate Swift wrappers. Files should appear in `outputDir` specified in
+After successfully applying the plugin configuration, generate Swift wrappers. Files should appear in `outputDir`
+specified in
 configuration
 block.
 
 ```
 ./gradlew generateSwiftTemplates
 ```
+
+### Link generated files
 
 To link generated files with your project, from XCode `File` menu click `Add files` and create group with sources.
 When the files are linked, run the `iOS` app to check whether everything builds. Maybe there are additional changes
