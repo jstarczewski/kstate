@@ -8,7 +8,7 @@ object ObservableStateHolder : FileToGenerate() {
     import Foundation
     import &PROJECT_TOKEN
 
-    class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: &PROJECT_TOKEN.KstateStateHolder {
+    class ObservableStateHolder<StateHolder>: ObservableObject where StateHolder: &PROJECT_TOKEN.&STATE_HOLDER_PREFIX_TOKENStateHolder {
 
         var stateHolder: StateHolder
 

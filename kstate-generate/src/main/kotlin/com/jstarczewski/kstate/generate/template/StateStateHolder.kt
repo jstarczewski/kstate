@@ -10,7 +10,7 @@ object StateStateHolder : FileToGenerate() {
     import &PROJECT_TOKEN
 
     @propertyWrapper
-    struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: &PROJECT_TOKEN.KstateStateHolder {
+    struct StateStateHolder<StateHolder>: DynamicProperty where StateHolder: &PROJECT_TOKEN.&STATE_HOLDER_PREFIX_TOKENStateHolder {
 
         @StateObject private var stateHolderObservable: ObservableStateHolder<StateHolder>
 

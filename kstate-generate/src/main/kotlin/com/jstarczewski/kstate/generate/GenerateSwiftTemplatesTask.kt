@@ -26,11 +26,19 @@ abstract class GenerateSwiftTemplatesTask : DefaultTask() {
     @get:Input
     abstract val sharedModuleName: Property<String>
 
+    @get:Input
+    abstract val coreLibraryExported: Property<Boolean>
+
     @TaskAction
     fun execute() {
         filesToGenerate.forEach { fileToGenerate ->
             val targetFile = outputDir.file(fileToGenerate.fileName).get().asFile
-            targetFile.writeText(fileToGenerate.generateContent(sharedModuleName.get()))
+            targetFile.writeText(
+                fileToGenerate.generateContent(
+                    sharedModuleName.get(),
+                    coreLibraryExported.get()
+                )
+            )
         }
     }
 }

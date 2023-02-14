@@ -6,6 +6,7 @@ compose = "1.3.1"
 android = "7.3.1"
 kstate = "0.0.3"
 junit = "4.13.2"
+publish = "1.0.0"
 vanitechjunit = "0.17.0-SNAPSHOT"
 [libraries]
 gradle-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
@@ -23,4 +24,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "android" }
 kstate-product = { id = "kstate.product", version.ref = "kstate" }
+kstate-dokka = { id = "kstate.dokka", version.ref = "kstate" }
+kstate-detekt = { id = "kstate.detekt", version.ref = "kstate" }
+gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "publish" }
 vanitech-junit = { id = "com.vanniktech.android.junit.jacoco", version.ref = "vanitechjunit" }
