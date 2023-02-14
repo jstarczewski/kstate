@@ -2,7 +2,9 @@
 plugins {
     `java-gradle-plugin`
     alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kstate.product)
+    alias(libs.plugins.gradle.publish)
+    alias(libs.plugins.kstate.detekt)
+    alias(libs.plugins.kstate.dokka)
 }
 
 group = "com.jstarczewski.kstate"
@@ -42,14 +44,26 @@ testing {
 
 gradlePlugin {
 
-    val generate by plugins.creating {
-        id = "com.jstarczewski.kstate.generate"
-        implementationClass = "com.jstarczewski.kstate.generate.KstateGeneratePlugin"
+
+    plugins {
+        create("generate") {
+            id = "com.jstarczewski.kstate.generate"
+            implementationClass = "com.jstarczewski.kstate.generate.KstateGeneratePlugin"
+            displayName = "Kstate Swift wrappers generating plugin"
+        }
     }
+}
+
+pluginBundle {
+    description = "Plugin generates Swift wrappers needed for Kstate state management library to work. The code of the library is available in the same repository as the kstate-generate gradle plugin."
+    website = "https://github.com/jstarczewski/kstate"
+    vcsUrl = "https://github.com/jstarczewski/kstate"
+    tags = setOf("kmm", "swift", "SwiftUI", "kotlin", "multiplatform")
 }
 
 gradlePlugin.testSourceSets(sourceSets["functionalTest"])
 
 tasks.named<Task>("check") {
+
     dependsOn(testing.suites.named("functionalTest"))
 }
