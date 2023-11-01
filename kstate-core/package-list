@@ -6,6 +6,7 @@ $dokka.location:com.jstarczewski.kstate//stateful/com.jstarczewski.kstate.StateH
 $dokka.location:com.jstarczewski.kstate/Binder///PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-binder/index.html
 $dokka.location:com.jstarczewski.kstate/Binder/Binder/#/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-binder/-binder.html
 $dokka.location:com.jstarczewski.kstate/Binder/objectWillChange/#/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-binder/object-will-change.html
+$dokka.location:com.jstarczewski.kstate/Binder/onChanged/#/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-binder/on-changed.html
 $dokka.location:com.jstarczewski.kstate/StateHolder///PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-state-holder/index.html
 $dokka.location:com.jstarczewski.kstate/StateHolder/binder/#/PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-state-holder/binder.html
 $dokka.location:com.jstarczewski.kstate/Stateful///PointingToDeclaration/kstate-core/com.jstarczewski.kstate/-stateful/index.html
