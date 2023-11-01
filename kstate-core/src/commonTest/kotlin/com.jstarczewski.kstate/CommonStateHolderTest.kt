@@ -7,7 +7,7 @@ import kotlin.test.assertTrue
 class CommonStateHolderTest {
 
     @Test
-    fun `initial isLoading state is equal initial value of false`() {
+    fun initialIsLoadingStateIsEqualInitialValueOfFalse() {
         val stateHolder = object : StateHolder by StateHolder() {
             var isLoading by stateful(false)
         }
@@ -15,7 +15,7 @@ class CommonStateHolderTest {
     }
 
     @Test
-    fun `isLoading state changed from false to true changes to true`() {
+    fun isLoadingStateChangedFromFalseToTrueChangesToTrue() {
         val stateHolder = object : StateHolder by StateHolder() {
             var isLoading by stateful(false)
         }
