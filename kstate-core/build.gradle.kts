@@ -8,17 +8,25 @@ plugins {
 }
 
 group = "com.jstarczewski.kstate"
-version = "0.0.3"
+version = "0.0.4"
 
 kotlin {
     android {
         publishLibraryVariants("release", "debug")
     }
 
+    js(IR) {
+        browser {}
+        binaries.library()
+    }
+
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
+        tvosX64(),
+        tvosArm64(),
+        tvosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
             baseName = "kstate"
@@ -46,20 +54,32 @@ kotlin {
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
+        val tvosX64Main by getting
+        val tvosArm64Main by getting
+        val tvosSimulatorArm64Main by getting
         val iosMain by creating {
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            tvosX64Main.dependsOn(this)
+            tvosArm64Main.dependsOn(this)
+            tvosSimulatorArm64Main.dependsOn(this)
         }
         val iosX64Test by getting
         val iosArm64Test by getting
         val iosSimulatorArm64Test by getting
+        val tvosX64Test by getting
+        val tvosArm64Test by getting
+        val tvosSimulatorArm64Test by getting
         val iosTest by creating {
             dependsOn(commonTest)
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
+            tvosX64Test.dependsOn(this)
+            tvosArm64Test.dependsOn(this)
+            tvosSimulatorArm64Test.dependsOn(this)
         }
     }
 }
@@ -72,4 +92,3 @@ android {
         targetSdk = 33
     }
 }
-

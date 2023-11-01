@@ -1,5 +1,7 @@
 package com.jstarczewski.kstate
 
+import kotlin.js.JsName
+
 /**
  * Classes that aim to provide a [Stateful] that platforms can observe should implement this
  * interface to allow easy binding
@@ -25,6 +27,7 @@ interface StateHolder {
  * Creates a default [StateHolder] implementation. Mainly used with delegation pattern [StateHolder] for more
  * information.
  */
+@JsName("DefaultStateHolder")
 fun StateHolder(): StateHolder = object : StateHolder {
 
     override val binder: Binder = Binder()
