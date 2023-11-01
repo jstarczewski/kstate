@@ -8,11 +8,16 @@ plugins {
 }
 
 group = "com.jstarczewski.kstate"
-version = "0.0.3"
+version = "0.0.4"
 
 kotlin {
     android {
         publishLibraryVariants("release", "debug")
+    }
+
+    js(IR) {
+        browser {}
+        binaries.library()
     }
 
     listOf(
