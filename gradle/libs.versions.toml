@@ -1,11 +1,11 @@
 [versions]
 detekt = "1.22.0"
-kotlin = "1.7.20"
-dokka = "1.7.20"
-compose = "1.3.1"
+kotlin = "1.9.22"
+dokka = "1.9.20"
 android = "7.3.1"
 kstate = "0.0.3"
 junit = "4.13.2"
+compose-compiler-jetbrains = "1.6.0"
 publish = "1.0.0"
 vanitechjunit = "0.17.0-SNAPSHOT"
 [libraries]
@@ -13,7 +13,6 @@ gradle-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", v
 gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradle-kotlin-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
-androidx-compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
@@ -28,3 +27,4 @@ kstate-dokka = { id = "kstate.dokka", version.ref = "kstate" }
 kstate-detekt = { id = "kstate.detekt", version.ref = "kstate" }
 gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "publish" }
 vanitech-junit = { id = "com.vanniktech.android.junit.jacoco", version.ref = "vanitechjunit" }
+composeJetbrains = { id = "org.jetbrains.compose", version.ref = "compose-compiler-jetbrains" }

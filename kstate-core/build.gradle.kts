@@ -4,14 +4,15 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kstate.product)
     alias(libs.plugins.vanitech.junit)
+    alias(libs.plugins.composeJetbrains)
     jacoco
 }
 
 group = "com.jstarczewski.kstate"
-version = "0.0.4"
+version = "0.0.5"
 
 kotlin {
-    android {
+    androidTarget {
         publishLibraryVariants("release", "debug")
     }
 
@@ -34,18 +35,17 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(compose.runtime)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.androidx.compose.runtime)
-            }
-        }
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(libs.kotlin.test.junit)
                 implementation(libs.junit)
